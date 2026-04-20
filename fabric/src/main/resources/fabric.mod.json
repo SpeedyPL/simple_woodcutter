@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "simple_woodcutter",
+  "version": "${version}",
+  "name": "Simple Woodcutter",
+  "description": "",
+  "authors": [
+    "Zebatek"
+  ],
+  "contact": {
+    "homepage": ""
+  },
+  "license": "MIT",
+  "icon": "assets/simple_woodcutter/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.zebatek.simple_woodcutter.fabric.Simple_woodcutterFabric"
+    ],
+    "client": [
+      "net.zebatek.simple_woodcutter.fabric.client.Simple_woodcutterFabricClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.2",
+    "minecraft": "~1.20.1",
+    "java": ">=17",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
