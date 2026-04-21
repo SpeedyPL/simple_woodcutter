@@ -17,7 +17,6 @@ public final class Simple_woodcutterForge {
     private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Simple_woodcutter.MOD_ID);
 
     public Simple_woodcutterForge() {
-
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         BLOCKS.register("woodcutter", () -> ModBlocks.WOODCUTTER);
