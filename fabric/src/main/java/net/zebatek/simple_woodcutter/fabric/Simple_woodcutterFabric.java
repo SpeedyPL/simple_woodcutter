@@ -12,10 +12,10 @@ public final class Simple_woodcutterFabric implements ModInitializer {
     public void onInitialize() {
 
         Registry.register(BuiltInRegistries.BLOCK,
-                new ResourceLocation(Simple_woodcutter.MOD_ID, "woodcutter"), ModBlocks.WOODCUTTER);
+                new ResourceLocation(Simple_woodcutter.MOD_ID, "woodcutter.json"), ModBlocks.WOODCUTTER);
 
         Registry.register(BuiltInRegistries.ITEM,
-                new ResourceLocation(Simple_woodcutter.MOD_ID, "woodcutter"), ModBlocks.WOODCUTTER_ITEM);
+                new ResourceLocation(Simple_woodcutter.MOD_ID, "woodcutter.json"), ModBlocks.WOODCUTTER_ITEM);
 
         Simple_woodcutter.init();
     }
