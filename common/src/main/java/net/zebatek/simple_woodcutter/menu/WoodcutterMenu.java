@@ -166,6 +166,17 @@ public class WoodcutterMenu extends AbstractContainerMenu {
         this.broadcastChanges();
     }
 
+    @Override
+    public void removed(Player player) {
+        super.removed(player);
+
+        this.resultContainer.removeItemNoUpdate(1);
+
+        this.access.execute((level, blockpos) -> {
+            this.clearContainer(player, this.container);
+        });
+    }
+
     public int getSelectedRecipeIndex() { return this.selectedRecipeIndex.get(); }
     public List<WoodcutterRecipe> getRecipes() { return this.recipes; }
     public int getNumRecipes() { return this.recipes.size(); }

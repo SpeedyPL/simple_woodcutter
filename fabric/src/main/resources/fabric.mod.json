@@ -19,6 +19,9 @@
     ],
     "client": [
       "net.zebatek.simple_woodcutter.fabric.client.Simple_woodcutterFabricClient"
+    ],
+    "fabric-datagen": [
+      "net.zebatek.simple_woodcutter.fabric.datagen.DataGen"
     ]
   },
   "depends": {
