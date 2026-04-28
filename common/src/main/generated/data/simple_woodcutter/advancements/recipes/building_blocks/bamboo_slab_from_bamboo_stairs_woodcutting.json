@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_iron_ingot": {
+    "has_bamboo_stairs": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:iron_ingot"
+              "minecraft:bamboo_stairs"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "simple_woodcutter:woodcutter"
+        "recipe": "simple_woodcutter:bamboo_slab_from_bamboo_stairs_woodcutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_iron_ingot",
+      "has_bamboo_stairs",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "simple_woodcutter:woodcutter"
+      "simple_woodcutter:bamboo_slab_from_bamboo_stairs_woodcutting"
     ]
   },
   "sends_telemetry_event": false

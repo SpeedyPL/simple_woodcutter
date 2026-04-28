@@ -1,0 +1,8 @@
+{
+  "type": "simple_woodcutter:woodcutting",
+  "count": 2,
+  "ingredient": {
+    "item": "minecraft:cherry_slab"
+  },
+  "result": "minecraft:cherry_sign"
+}

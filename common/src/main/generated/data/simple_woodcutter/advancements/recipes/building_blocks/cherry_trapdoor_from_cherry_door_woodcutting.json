@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_iron_ingot": {
+    "has_cherry_door": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:iron_ingot"
+              "minecraft:cherry_door"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "simple_woodcutter:woodcutter"
+        "recipe": "simple_woodcutter:cherry_trapdoor_from_cherry_door_woodcutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_iron_ingot",
+      "has_cherry_door",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "simple_woodcutter:woodcutter"
+      "simple_woodcutter:cherry_trapdoor_from_cherry_door_woodcutting"
     ]
   },
   "sends_telemetry_event": false

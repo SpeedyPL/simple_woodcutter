@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_iron_ingot": {
+    "has_crimson_slab": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:iron_ingot"
+              "minecraft:crimson_slab"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "simple_woodcutter:woodcutter"
+        "recipe": "simple_woodcutter:crimson_fence_from_crimson_slab_woodcutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_iron_ingot",
+      "has_crimson_slab",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "simple_woodcutter:woodcutter"
+      "simple_woodcutter:crimson_fence_from_crimson_slab_woodcutting"
     ]
   },
   "sends_telemetry_event": false

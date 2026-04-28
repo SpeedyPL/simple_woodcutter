@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_oak_log": {
+    "has_spruce_door": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:oak_log"
+              "minecraft:spruce_door"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "simple_woodcutter:oak_planks_from_oak_log_woodcutting"
+        "recipe": "simple_woodcutter:spruce_trapdoor_from_spruce_door_woodcutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_oak_log",
+      "has_spruce_door",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "simple_woodcutter:oak_planks_from_oak_log_woodcutting"
+      "simple_woodcutter:spruce_trapdoor_from_spruce_door_woodcutting"
     ]
   },
   "sends_telemetry_event": false

@@ -1,0 +1,8 @@
+{
+  "type": "simple_woodcutter:woodcutting",
+  "count": 5,
+  "ingredient": {
+    "item": "minecraft:warped_planks"
+  },
+  "result": "minecraft:warped_sign"
+}

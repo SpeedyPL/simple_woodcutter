@@ -1,0 +1,8 @@
+{
+  "type": "simple_woodcutter:woodcutting",
+  "count": 13,
+  "ingredient": {
+    "item": "minecraft:warped_slab"
+  },
+  "result": "minecraft:warped_button"
+}

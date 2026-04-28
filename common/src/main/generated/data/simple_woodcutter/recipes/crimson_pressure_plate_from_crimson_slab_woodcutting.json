@@ -1,0 +1,8 @@
+{
+  "type": "simple_woodcutter:woodcutting",
+  "count": 2,
+  "ingredient": {
+    "item": "minecraft:crimson_slab"
+  },
+  "result": "minecraft:crimson_pressure_plate"
+}

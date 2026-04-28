@@ -1,13 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_iron_ingot": {
+    "has_oak_logs": {
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:iron_ingot"
-            ]
+            "tag": "minecraft:oak_logs"
           }
         ]
       },
@@ -15,20 +13,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "simple_woodcutter:woodcutter"
+        "recipe": "simple_woodcutter:oak_planks_from_oak_logs_woodcutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_iron_ingot",
+      "has_oak_logs",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "simple_woodcutter:woodcutter"
+      "simple_woodcutter:oak_planks_from_oak_logs_woodcutting"
     ]
   },
   "sends_telemetry_event": false

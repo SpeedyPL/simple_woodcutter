@@ -1,0 +1,8 @@
+{
+  "type": "simple_woodcutter:woodcutting",
+  "count": 5,
+  "ingredient": {
+    "item": "minecraft:mangrove_boat"
+  },
+  "result": "minecraft:mangrove_planks"
+}

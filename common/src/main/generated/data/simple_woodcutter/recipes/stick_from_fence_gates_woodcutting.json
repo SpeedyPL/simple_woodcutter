@@ -1,0 +1,8 @@
+{
+  "type": "simple_woodcutter:woodcutting",
+  "count": 2,
+  "ingredient": {
+    "tag": "minecraft:fence_gates"
+  },
+  "result": "minecraft:stick"
+}

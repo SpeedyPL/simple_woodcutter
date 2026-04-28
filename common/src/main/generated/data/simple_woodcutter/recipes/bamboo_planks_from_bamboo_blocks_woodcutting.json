@@ -1,0 +1,8 @@
+{
+  "type": "simple_woodcutter:woodcutting",
+  "count": 2,
+  "ingredient": {
+    "tag": "minecraft:bamboo_blocks"
+  },
+  "result": "minecraft:bamboo_planks"
+}

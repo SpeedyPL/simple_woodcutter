@@ -1,0 +1,8 @@
+{
+  "type": "simple_woodcutter:woodcutting",
+  "count": 5,
+  "ingredient": {
+    "item": "minecraft:jungle_boat"
+  },
+  "result": "minecraft:jungle_planks"
+}

@@ -1,0 +1,8 @@
+{
+  "type": "simple_woodcutter:woodcutting",
+  "count": 2,
+  "ingredient": {
+    "item": "minecraft:oak_door"
+  },
+  "result": "minecraft:oak_trapdoor"
+}

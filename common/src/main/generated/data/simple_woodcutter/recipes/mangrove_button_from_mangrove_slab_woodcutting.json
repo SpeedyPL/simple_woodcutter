@@ -1,0 +1,8 @@
+{
+  "type": "simple_woodcutter:woodcutting",
+  "count": 13,
+  "ingredient": {
+    "item": "minecraft:mangrove_slab"
+  },
+  "result": "minecraft:mangrove_button"
+}

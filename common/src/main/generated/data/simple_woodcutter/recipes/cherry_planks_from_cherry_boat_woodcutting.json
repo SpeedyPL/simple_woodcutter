@@ -1,0 +1,8 @@
+{
+  "type": "simple_woodcutter:woodcutting",
+  "count": 5,
+  "ingredient": {
+    "item": "minecraft:cherry_boat"
+  },
+  "result": "minecraft:cherry_planks"
+}

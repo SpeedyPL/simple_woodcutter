@@ -2,7 +2,7 @@
   "type": "simple_woodcutter:woodcutting",
   "count": 4,
   "ingredient": {
-    "item": "minecraft:oak_log"
+    "tag": "minecraft:crimson_stems"
   },
-  "result": "minecraft:oak_planks"
+  "result": "minecraft:crimson_planks"
 }

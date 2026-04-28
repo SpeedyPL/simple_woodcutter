@@ -1,0 +1,8 @@
+{
+  "type": "simple_woodcutter:woodcutting",
+  "count": 1,
+  "ingredient": {
+    "item": "minecraft:spruce_stairs"
+  },
+  "result": "minecraft:spruce_slab"
+}

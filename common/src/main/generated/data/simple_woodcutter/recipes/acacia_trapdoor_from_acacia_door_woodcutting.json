@@ -1,0 +1,8 @@
+{
+  "type": "simple_woodcutter:woodcutting",
+  "count": 2,
+  "ingredient": {
+    "item": "minecraft:acacia_door"
+  },
+  "result": "minecraft:acacia_trapdoor"
+}

@@ -1,0 +1,8 @@
+{
+  "type": "simple_woodcutter:woodcutting",
+  "count": 2,
+  "ingredient": {
+    "item": "minecraft:warped_door"
+  },
+  "result": "minecraft:warped_trapdoor"
+}
