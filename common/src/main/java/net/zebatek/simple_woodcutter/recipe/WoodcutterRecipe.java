@@ -1,7 +1,6 @@
 package net.zebatek.simple_woodcutter.recipe;
 
 import com.google.gson.JsonObject;
-import net.minecraft.client.RecipeBookCategories;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
