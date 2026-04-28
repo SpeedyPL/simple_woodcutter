@@ -46,6 +46,14 @@ subprojects {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
+    sourceSets {
+        main {
+            resources {
+                srcDir "src/main/generated"
+            }
+        }
+    }
+
     tasks.withType(JavaCompile).configureEach {
         it.options.release = 17
     }
