@@ -2,16 +2,17 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "minecraft:stone"
-    },
     "I": {
       "item": "minecraft:iron_ingot"
+    },
+    "P": {
+      "tag": "minecraft:planks"
     }
   },
   "pattern": [
     " I ",
-    "###"
+    "PPP",
+    "I I"
   ],
   "result": {
     "item": "simple_woodcutter:woodcutter"
