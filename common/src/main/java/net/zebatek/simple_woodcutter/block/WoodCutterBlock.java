@@ -32,7 +32,7 @@ public class WoodCutterBlock extends HorizontalDirectionalBlock {
 
     protected static final VoxelShape SHAPE = Block.box(0,0,0,16,12,16);
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
-    private static final Component TITLE = Component.translatable("container.woodcutter");
+    private static final Component TITLE = Component.translatable("block.simple_woodcutter.woodcutter");
 
     public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
         return (BlockState)this.defaultBlockState().setValue(FACING, blockPlaceContext.getHorizontalDirection().getOpposite());
