@@ -8,10 +8,9 @@ modId = "simple_woodcutter"
 version = "${version}"
 displayName = "Simple Woodcutter"
 authors = "Zebatek"
-description = '''
+description = "This mod adds a simple vanilla-like woodcutter. It's easy to craft and it has over 100 built-in recipes. You can also use it in your own mod, for example to add custom recipes to your custom wood etc."
 
-'''
-#logoFile = ""
+logoFile = "icon.png"
 
 [[dependencies.simple_woodcutter]]
 modId = "forge"

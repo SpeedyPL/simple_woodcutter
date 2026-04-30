@@ -3,7 +3,7 @@
   "id": "simple_woodcutter",
   "version": "${version}",
   "name": "Simple Woodcutter",
-  "description": "",
+  "description": "This mod adds a simple vanilla-like woodcutter. It's easy to craft and it has over 100 built-in recipes. You can also use it in your own mod, for example to add custom recipes to your custom wood etc.",
   "authors": [
     "Zebatek"
   ],
@@ -11,7 +11,7 @@
     "homepage": ""
   },
   "license": "MIT",
-  "icon": "assets/simple_woodcutter/icon.png",
+  "icon": "icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -22,6 +22,9 @@
     ],
     "fabric-datagen": [
       "net.zebatek.simple_woodcutter.fabric.datagen.DataGen"
+    ],
+    "jei_mod_plugin": [
+      "net.zebatek.simple_woodcutter.fabric.compat.JeiWoodcuttingPluginFabric"
     ]
   },
   "depends": {

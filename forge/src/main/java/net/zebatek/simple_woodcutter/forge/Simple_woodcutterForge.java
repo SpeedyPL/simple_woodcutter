@@ -2,11 +2,13 @@ package net.zebatek.simple_woodcutter.forge;
 
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.extensions.IForgeMenuType;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -67,6 +69,7 @@ public final class Simple_woodcutterForge {
         RECIPE_TYPES.register(eventBus);
 
         eventBus.addListener(this::clientSetup);
+        eventBus.addListener(this::addCreative);
         Simple_woodcutter.init();
     }
 
@@ -74,5 +77,11 @@ public final class Simple_woodcutterForge {
         event.enqueueWork(() -> {
             MenuScreens.register(Simple_woodcutterForge.FG_WOODCUTTER_MENU.get(), WoodcutterScreen::new);
         });
+    }
+
+    private void addCreative(BuildCreativeModeTabContentsEvent event){
+        if(event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS){
+            event.accept(ModBlocks.WOODCUTTER_ITEM);
+        }
     }
 }

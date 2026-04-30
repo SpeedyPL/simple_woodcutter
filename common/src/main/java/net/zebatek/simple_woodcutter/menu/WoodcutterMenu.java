@@ -1,5 +1,7 @@
 package net.zebatek.simple_woodcutter.menu;
 
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -53,7 +55,20 @@ public class WoodcutterMenu extends AbstractContainerMenu {
             @Override
             public void onTake(Player player, ItemStack stack) {
                 stack.onCraftedBy(player.level(), player, stack.getCount());
-                WoodcutterMenu.this.container.removeItem(0, 1);
+                ItemStack inputStack = WoodcutterMenu.this.container.removeItem(0, 1);
+
+                if (!inputStack.isEmpty()) {
+                    WoodcutterMenu.this.setupResultSlot();
+                }
+
+                access.execute((level, blockPos) -> {
+                    long time = level.getGameTime();
+                    if (WoodcutterMenu.this.lastSoundTime != time) {
+                        level.playSound(null, blockPos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 1.0F, 1.0F);
+                        WoodcutterMenu.this.lastSoundTime = time;
+                    }
+                });
+
                 super.onTake(player, stack);
             }
         });

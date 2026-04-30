@@ -1,10 +1,12 @@
 package net.zebatek.simple_woodcutter.fabric;
 
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SingleItemRecipe;
@@ -47,6 +49,10 @@ public final class Simple_woodcutterFabric implements ModInitializer {
                     public String toString() {return "woodcutting";}
                 }
         );
+
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS).register(content ->{
+            content.accept(ModBlocks.WOODCUTTER_ITEM);
+        });
 
         ModMenuTypes.WOODCUTTER_MENU = () -> fabricMenu;
         ModRecipes.WOODCUTTER_SERIALIZER = () -> fabricSerializer;

@@ -26,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class WoodCutterBlock extends HorizontalDirectionalBlock {
     public WoodCutterBlock() {
-        super(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD).noOcclusion());
+        super(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.COPPER).noOcclusion());
         this.registerDefaultState((BlockState)((BlockState)this.stateDefinition.any()).setValue(FACING, Direction.NORTH));
     }
 
