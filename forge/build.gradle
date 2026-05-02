@@ -50,7 +50,7 @@ dependencies {
     shadowBundle project(path: ':common', configuration: 'transformProductionForge')
 
     modCompileOnly("mezz.jei:jei-1.20.1-forge-api:15.20.0.130")
-    modRuntimeOnly("mezz.jei:jei-1.20.1-forge:15.20.0.130")
+    //modRuntimeOnly("mezz.jei:jei-1.20.1-forge:15.20.0.130")
 }
 
 processResources {

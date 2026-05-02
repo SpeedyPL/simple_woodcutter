@@ -46,7 +46,7 @@ dependencies {
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 
     modCompileOnly("mezz.jei:jei-1.20.1-fabric-api:15.20.0.130")
-    modRuntimeOnly("mezz.jei:jei-1.20.1-fabric:15.20.0.130")
+    //modRuntimeOnly("mezz.jei:jei-1.20.1-fabric:15.20.0.130")
 }
 
 processResources {
