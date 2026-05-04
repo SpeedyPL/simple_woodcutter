@@ -69,3 +69,18 @@ shadowJar {
 remapJar {
     input.set shadowJar.archiveFile
 }
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            pom.withXml {
+                def dependenciesNode = asNode().appendNode('dependencies')
+                asNode().dependencies.dependency.each { dep ->
+                    if (dep.groupId.text().contains("net.fabricmc") || dep.groupId.text().contains("dev.architectury")) {
+                        dep.replaceNode {}
+                    }
+                }
+            }
+        }
+    }
+}
