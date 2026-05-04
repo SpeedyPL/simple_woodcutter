@@ -10,6 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.zebatek.simple_woodcutter.recipe.WoodcutterRecipe;
 
 public class WoodcutterScreen extends AbstractContainerScreen<WoodcutterMenu> {
@@ -33,7 +34,7 @@ public class WoodcutterScreen extends AbstractContainerScreen<WoodcutterMenu> {
 
     @Override
     protected void renderBg(GuiGraphics guiGraphics, float f, int i, int j) {
-        this.renderBackground(guiGraphics);
+        this.renderBackground(guiGraphics, 0,0,0);
         int k = this.leftPos;
         int l = this.topPos;
         guiGraphics.blit(BG_LOCATION, k, l, 0, 0, this.imageWidth, this.imageHeight);
@@ -53,14 +54,14 @@ public class WoodcutterScreen extends AbstractContainerScreen<WoodcutterMenu> {
             int k = this.leftPos + 52;
             int l = this.topPos + 14;
             int m = this.startIndex + 12;
-            List<WoodcutterRecipe> list = this.menu.getRecipes();
+            List<RecipeHolder<WoodcutterRecipe>> list = this.menu.getRecipes();
 
             for(int n = this.startIndex; n < m && n < this.menu.getNumRecipes(); ++n) {
                 int o = n - this.startIndex;
                 int p = k + o % 4 * 16;
                 int q = l + o / 4 * 18 + 2;
                 if (i >= p && i < p + 16 && j >= q && j < q + 18) {
-                    guiGraphics.renderTooltip(this.font, list.get(n).getResultItem(this.minecraft.level.registryAccess()), i, j);
+                    guiGraphics.renderTooltip(this.font, list.get(n).value().getResultItem(this.minecraft.level.registryAccess()), i, j);
                 }
             }
         }
@@ -83,14 +84,14 @@ public class WoodcutterScreen extends AbstractContainerScreen<WoodcutterMenu> {
     }
 
     private void renderRecipes(GuiGraphics guiGraphics, int i, int j, int k) {
-        List<WoodcutterRecipe> list = this.menu.getRecipes();
+        List<RecipeHolder<WoodcutterRecipe>> list = this.menu.getRecipes();
 
         for(int l = this.startIndex; l < k && l < this.menu.getNumRecipes(); ++l) {
             int m = l - this.startIndex;
             int n = i + m % 4 * 16;
             int o = m / 4;
             int p = j + o * 18 + 2;
-            guiGraphics.renderItem(list.get(l).getResultItem(this.minecraft.level.registryAccess()), n, p);
+            guiGraphics.renderItem(list.get(l).value().getResultItem(this.minecraft.level.registryAccess()), n, p);
         }
     }
 
@@ -137,11 +138,12 @@ public class WoodcutterScreen extends AbstractContainerScreen<WoodcutterMenu> {
     }
 
     @Override
-    public boolean mouseScrolled(double d, double e, double f) {
+    public boolean mouseScrolled(double mouseX, double mouseY, double scrollX, double scrollY) {
         if (this.isScrollBarActive()) {
             int i = this.getOffscreenRows();
-            float g = (float)f / (float)i;
-            this.scrollOffs = Mth.clamp(this.scrollOffs - g, 0.0F, 1.0F);
+            float f = (float)scrollY / (float)i;
+
+            this.scrollOffs = Mth.clamp(this.scrollOffs - f, 0.0F, 1.0F);
             this.startIndex = (int)((double)(this.scrollOffs * (float)i) + 0.5D) * 4;
         }
         return true;

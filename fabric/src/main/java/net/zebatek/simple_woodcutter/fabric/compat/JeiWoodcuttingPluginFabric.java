@@ -8,6 +8,7 @@ import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.zebatek.simple_woodcutter.Simple_woodcutter;
 import net.zebatek.simple_woodcutter.block.ModBlocks;
@@ -34,7 +35,11 @@ public class JeiWoodcuttingPluginFabric implements IModPlugin {
     public void registerRecipes(IRecipeRegistration registration) {
         RecipeManager recipeManager = Minecraft.getInstance().level.getRecipeManager();
 
-        List<WoodcutterRecipe> recipes = recipeManager.getAllRecipesFor(ModRecipes.WOODCUTTER_TYPE.get());
+        List<RecipeHolder<WoodcutterRecipe>> holders = recipeManager.getAllRecipesFor(ModRecipes.WOODCUTTER_TYPE.get());
+
+        List<WoodcutterRecipe> recipes = holders.stream()
+                .map(RecipeHolder::value)
+                .toList();
 
         registration.addRecipes(WoodcuttingCategoryFabric.WOODCUTTING_TYPE, recipes);
     }

@@ -1,9 +1,12 @@
 package net.zebatek.simple_woodcutter.recipe;
 
 import com.google.gson.JsonObject;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.ExtraCodecs;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
@@ -15,8 +18,8 @@ import net.zebatek.simple_woodcutter.block.ModBlocks;
 import org.jetbrains.annotations.NotNull;
 
 public class WoodcutterRecipe extends SingleItemRecipe {
-    public WoodcutterRecipe(ResourceLocation id, String group, Ingredient ingredient, ItemStack result) {
-        super(ModRecipes.WOODCUTTER_TYPE.get(), ModRecipes.WOODCUTTER_SERIALIZER.get(), id, group, ingredient, result);
+    public WoodcutterRecipe(String group, Ingredient ingredient, ItemStack result) {
+        super(ModRecipes.WOODCUTTER_TYPE.get(), ModRecipes.WOODCUTTER_SERIALIZER.get(), group, ingredient, result);
     }
 
     @Override
@@ -30,30 +33,30 @@ public class WoodcutterRecipe extends SingleItemRecipe {
     }
 
     public static class Serializer implements RecipeSerializer<WoodcutterRecipe> {
-        @Override
-        public WoodcutterRecipe fromJson(ResourceLocation id, JsonObject json) {
-            String group = GsonHelper.getAsString(json, "group", "");
-            Ingredient ingredient = Ingredient.fromJson(json.get("ingredient"));
-            String resultItem = GsonHelper.getAsString(json, "result");
-            int count = GsonHelper.getAsInt(json, "count", 1);
+        private final Codec<WoodcutterRecipe> codec = RecordCodecBuilder.create((instance) -> instance.group(
+                ExtraCodecs.strictOptionalField(Codec.STRING, "group", "").forGetter((recipe) -> recipe.group),
+                Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter((recipe) -> recipe.ingredient),
+                ItemStack.CODEC.fieldOf("result").forGetter((recipe) -> recipe.result)
+        ).apply(instance, WoodcutterRecipe::new));
 
-            ItemStack resultStack = new ItemStack(BuiltInRegistries.ITEM.get(new ResourceLocation(resultItem)), count);
-            return new WoodcutterRecipe(id, group, ingredient, resultStack);
+        @Override
+        public Codec<WoodcutterRecipe> codec() {
+            return this.codec;
         }
 
         @Override
-        public WoodcutterRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
+        public WoodcutterRecipe fromNetwork(FriendlyByteBuf buf) {
             String group = buf.readUtf();
             Ingredient ingredient = Ingredient.fromNetwork(buf);
             ItemStack result = buf.readItem();
-            return new WoodcutterRecipe(id, group, ingredient, result);
+            return new WoodcutterRecipe(group, ingredient, result);
         }
 
         @Override
         public void toNetwork(FriendlyByteBuf buf, WoodcutterRecipe recipe) {
             buf.writeUtf(recipe.getGroup());
-            recipe.getIngredients().get(0).toNetwork(buf);
-            buf.writeItem(recipe.getResultItem(net.minecraft.core.RegistryAccess.EMPTY));
+            recipe.ingredient.toNetwork(buf);
+            buf.writeItem(recipe.result);
         }
     }
 }

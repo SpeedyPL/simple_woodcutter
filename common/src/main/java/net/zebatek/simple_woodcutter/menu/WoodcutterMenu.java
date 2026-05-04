@@ -8,6 +8,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.zebatek.simple_woodcutter.block.ModBlocks;
 import net.zebatek.simple_woodcutter.recipe.ModRecipes;
@@ -30,7 +31,7 @@ public class WoodcutterMenu extends AbstractContainerMenu {
     private final ResultContainer resultContainer = new ResultContainer();
     private final DataSlot selectedRecipeIndex = DataSlot.standalone();
     private final Level level;
-    private List<WoodcutterRecipe> recipes = new ArrayList<>();
+    private List<RecipeHolder<WoodcutterRecipe>> recipes = new ArrayList<>();
     private ItemStack inputStack = ItemStack.EMPTY;
     long lastSoundTime;
 
@@ -173,7 +174,7 @@ public class WoodcutterMenu extends AbstractContainerMenu {
 
     private void setupResultSlot() {
         if (!this.recipes.isEmpty() && this.selectedRecipeIndex.get() != -1) {
-            WoodcutterRecipe recipe = this.recipes.get(this.selectedRecipeIndex.get());
+            WoodcutterRecipe recipe = this.recipes.get(this.selectedRecipeIndex.get()).value();
             this.resultContainer.setItem(1, recipe.assemble(this.container, this.level.registryAccess()));
         } else {
             this.resultContainer.setItem(1, ItemStack.EMPTY);
@@ -193,7 +194,7 @@ public class WoodcutterMenu extends AbstractContainerMenu {
     }
 
     public int getSelectedRecipeIndex() { return this.selectedRecipeIndex.get(); }
-    public List<WoodcutterRecipe> getRecipes() { return this.recipes; }
+    public List<RecipeHolder<WoodcutterRecipe>> getRecipes() { return this.recipes; }
     public int getNumRecipes() { return this.recipes.size(); }
     public boolean hasInputItem() { return !this.container.getItem(0).isEmpty() && !this.recipes.isEmpty(); }
 }
