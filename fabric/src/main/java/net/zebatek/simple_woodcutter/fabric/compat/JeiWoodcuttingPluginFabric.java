@@ -12,6 +12,7 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.zebatek.simple_woodcutter.Simple_woodcutter;
 import net.zebatek.simple_woodcutter.block.ModBlocks;
+import net.zebatek.simple_woodcutter.compat.WoodcuttingCategoryFabric;
 import net.zebatek.simple_woodcutter.recipe.ModRecipes;
 import net.zebatek.simple_woodcutter.recipe.WoodcutterRecipe;
 import org.jetbrains.annotations.NotNull;
