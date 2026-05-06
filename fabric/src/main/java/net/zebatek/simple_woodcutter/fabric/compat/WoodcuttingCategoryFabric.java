@@ -1,4 +1,4 @@
-package net.zebatek.simple_woodcutter.compat;
+package net.zebatek.simple_woodcutter.fabric.compat;
 
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
