@@ -12,6 +12,7 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.zebatek.simple_woodcutter.Simple_woodcutter;
 import net.zebatek.simple_woodcutter.block.ModBlocks;
@@ -24,11 +25,14 @@ public class WoodcuttingCategory implements IRecipeCategory<WoodcutterRecipe> {
     private final IDrawable background;
     private final IDrawable icon;
     private final IDrawable arrow;
+    private final IDrawable slotBg;
 
     public WoodcuttingCategory(IGuiHelper helper) {
         this.background = helper.createBlankDrawable(82, 34);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.WOODCUTTER_ITEM));
-        this.arrow = helper.getSlotDrawable();
+        ResourceLocation furnaceGui = new ResourceLocation("minecraft", "textures/gui/container/furnace.png");
+        this.arrow = helper.createDrawable(furnaceGui, 79, 34, 24, 17);
+        this.slotBg = helper.getSlotDrawable();
     }
 
     @Override
@@ -54,10 +58,12 @@ public class WoodcuttingCategory implements IRecipeCategory<WoodcutterRecipe> {
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, WoodcutterRecipe recipe, IFocusGroup focuses) {
         builder.addSlot(RecipeIngredientRole.INPUT,1, 9)
+                .setBackground(this.slotBg, -1,-1)
                 .addIngredients(recipe.getIngredients().get(0));
 
         Minecraft minecraft = Minecraft.getInstance();
         builder.addSlot(RecipeIngredientRole.OUTPUT,61, 9)
+                .setBackground(this.slotBg,-1,-1)
                 .addItemStack(recipe.getResultItem(minecraft.level.registryAccess()));
     }
 
