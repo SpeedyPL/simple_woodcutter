@@ -20,19 +20,16 @@ import net.zebatek.simple_woodcutter.recipe.WoodcutterRecipe;
 
 public class WoodcuttingCategory implements IRecipeCategory<WoodcutterRecipe> {
 
-    public static final RecipeType<WoodcutterRecipe> WOODCUTTING_TYPE = RecipeType.create(Simple_woodcutter.MOD_ID, "woodcutting", WoodcutterRecipe.class);
+    public static final ResourceLocation UID = new ResourceLocation(Simple_woodcutter.MOD_ID, "woodcutting");
+    public static final RecipeType<WoodcutterRecipe> WOODCUTTING_TYPE = new RecipeType<>(UID, WoodcutterRecipe.class);
 
     private final IDrawable background;
     private final IDrawable icon;
-    private final IDrawable arrow;
-    private final IDrawable slotBg;
 
     public WoodcuttingCategory(IGuiHelper helper) {
-        this.background = helper.createBlankDrawable(82, 34);
+        ResourceLocation jeiVanillaGui = new ResourceLocation("jei", "textures/jei/gui/gui_vanilla.png");
+        this.background = helper.createDrawable(jeiVanillaGui, 0, 220, 82, 34);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.WOODCUTTER_ITEM));
-        ResourceLocation furnaceGui = new ResourceLocation("minecraft", "textures/gui/container/furnace.png");
-        this.arrow = helper.createDrawable(furnaceGui, 79, 34, 24, 17);
-        this.slotBg = helper.getSlotDrawable();
     }
 
     @Override
@@ -57,18 +54,15 @@ public class WoodcuttingCategory implements IRecipeCategory<WoodcutterRecipe> {
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, WoodcutterRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT,1, 9)
-                .setBackground(this.slotBg, -1,-1)
+        builder.addSlot(RecipeIngredientRole.INPUT, 1, 9)
                 .addIngredients(recipe.getIngredients().get(0));
 
         Minecraft minecraft = Minecraft.getInstance();
-        builder.addSlot(RecipeIngredientRole.OUTPUT,61, 9)
-                .setBackground(this.slotBg,-1,-1)
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 61, 9)
                 .addItemStack(recipe.getResultItem(minecraft.level.registryAccess()));
     }
 
     @Override
     public void draw(WoodcutterRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
-        this.arrow.draw(guiGraphics, 26, 9);
     }
 }
