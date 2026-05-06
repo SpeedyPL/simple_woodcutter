@@ -20,8 +20,8 @@
   },
   "requirements": [
     [
-      "has_jungle_logs",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_jungle_logs"
     ]
   ],
   "rewards": {

@@ -20,8 +20,8 @@
   },
   "requirements": [
     [
-      "has_cherry_logs",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_cherry_logs"
     ]
   ],
   "rewards": {

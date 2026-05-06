@@ -1,13 +1,11 @@
 package net.zebatek.simple_woodcutter.recipe;
 
-import com.google.gson.JsonObject;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ExtraCodecs;
-import net.minecraft.util.GsonHelper;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -33,19 +31,24 @@ public class WoodcutterRecipe extends SingleItemRecipe {
     }
 
     public static class Serializer implements RecipeSerializer<WoodcutterRecipe> {
+        private static final MapCodec<ItemStack> RESULT_CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
+                BuiltInRegistries.ITEM.byNameCodec().fieldOf("result").forGetter(ItemStack::getItem),
+                Codec.INT.optionalFieldOf("count", 1).forGetter(ItemStack::getCount)
+        ).apply(instance, ItemStack::new));
+
         private final Codec<WoodcutterRecipe> codec = RecordCodecBuilder.create((instance) -> instance.group(
                 ExtraCodecs.strictOptionalField(Codec.STRING, "group", "").forGetter((recipe) -> recipe.group),
                 Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter((recipe) -> recipe.ingredient),
-                ItemStack.CODEC.fieldOf("result").forGetter((recipe) -> recipe.result)
+                RESULT_CODEC.forGetter((recipe) -> recipe.result)
         ).apply(instance, WoodcutterRecipe::new));
 
         @Override
-        public Codec<WoodcutterRecipe> codec() {
+        public @NotNull Codec<WoodcutterRecipe> codec() {
             return this.codec;
         }
 
         @Override
-        public WoodcutterRecipe fromNetwork(FriendlyByteBuf buf) {
+        public @NotNull WoodcutterRecipe fromNetwork(FriendlyByteBuf buf) {
             String group = buf.readUtf();
             Ingredient ingredient = Ingredient.fromNetwork(buf);
             ItemStack result = buf.readItem();
