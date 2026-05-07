@@ -44,7 +44,7 @@ dependencies {
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 
-    modCompileOnlyApi("mezz.jei:jei-1.20.2-fabric-api:16.0.0.2")
+    modCompileOnly("mezz.jei:jei-1.20.2-fabric-api:16.0.0.2")
     //modRuntimeOnly("mezz.jei:jei-1.20.2-fabric:16.0.0.2")
 }
 
