@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:crimson_stairs"
-            ]
+            "items": "minecraft:crimson_stairs"
           }
         ]
       },
@@ -30,6 +28,5 @@
     "recipes": [
       "simple_woodcutter:crimson_slab_from_crimson_stairs_woodcutting"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -1,8 +1,10 @@
 {
   "type": "simple_woodcutter:woodcutting",
-  "count": 13,
   "ingredient": {
     "item": "minecraft:oak_slab"
   },
-  "result": "minecraft:oak_button"
+  "result": {
+    "count": 13,
+    "id": "minecraft:oak_button"
+  }
 }

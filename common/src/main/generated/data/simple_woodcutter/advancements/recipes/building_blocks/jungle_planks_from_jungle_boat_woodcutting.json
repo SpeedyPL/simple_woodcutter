@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:jungle_boat"
-            ]
+            "items": "minecraft:jungle_boat"
           }
         ]
       },
@@ -30,6 +28,5 @@
     "recipes": [
       "simple_woodcutter:jungle_planks_from_jungle_boat_woodcutting"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -1,8 +1,10 @@
 {
   "type": "simple_woodcutter:woodcutting",
-  "count": 1,
   "ingredient": {
     "item": "minecraft:warped_slab"
   },
-  "result": "minecraft:warped_fence_gate"
+  "result": {
+    "count": 1,
+    "id": "minecraft:warped_fence_gate"
+  }
 }

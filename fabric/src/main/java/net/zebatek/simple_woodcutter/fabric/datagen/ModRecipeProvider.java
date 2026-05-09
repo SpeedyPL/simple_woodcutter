@@ -2,7 +2,7 @@ package net.zebatek.simple_woodcutter.fabric.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
@@ -12,11 +12,11 @@ import net.minecraft.world.level.block.Blocks;
 import net.zebatek.simple_woodcutter.block.ModBlocks;
 import net.zebatek.simple_woodcutter.recipe.Woodcutting;
 
-import java.util.function.Consumer;
+import java.util.concurrent.CompletableFuture;
 
 public class ModRecipeProvider extends FabricRecipeProvider {
-    public ModRecipeProvider(FabricDataOutput output) {
-        super(output);
+    public ModRecipeProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+        super(output, provider);
     }
 
     @Override

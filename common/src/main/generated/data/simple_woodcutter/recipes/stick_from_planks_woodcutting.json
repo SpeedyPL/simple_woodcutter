@@ -1,8 +1,10 @@
 {
   "type": "simple_woodcutter:woodcutting",
-  "count": 8,
   "ingredient": {
     "tag": "minecraft:planks"
   },
-  "result": "minecraft:stick"
+  "result": {
+    "count": 8,
+    "id": "minecraft:stick"
+  }
 }

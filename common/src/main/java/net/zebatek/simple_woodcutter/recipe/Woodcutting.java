@@ -2,7 +2,6 @@ package net.zebatek.simple_woodcutter.recipe;
 
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
-import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
@@ -17,7 +16,7 @@ public class Woodcutting {
     public static void woodcutting(RecipeCategory category, RecipeOutput output, ItemLike input, ItemLike result, int count){
         new SingleItemRecipeBuilder(
                 category,
-                ModRecipes.WOODCUTTER_SERIALIZER.get(),
+                WoodcutterRecipe.FACTORY,
                 Ingredient.of(input),
                 result,
                 count
@@ -28,7 +27,7 @@ public class Woodcutting {
     }
 
     public static void woodcutting(RecipeCategory category,RecipeOutput output ,TagKey<Item> inputTag, ItemLike result, int count) {
-        new SingleItemRecipeBuilder(category, ModRecipes.WOODCUTTER_SERIALIZER.get(), Ingredient.of(inputTag), result, count)
+        new SingleItemRecipeBuilder(category, WoodcutterRecipe.FACTORY, Ingredient.of(inputTag), result, count)
                 .unlockedBy("has_" + inputTag.location().getPath(),
                         InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(inputTag).build()))
                 .save(output, new ResourceLocation(Simple_woodcutter.MOD_ID,

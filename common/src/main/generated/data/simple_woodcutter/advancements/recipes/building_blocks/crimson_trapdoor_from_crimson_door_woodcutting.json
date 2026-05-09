@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:crimson_door"
-            ]
+            "items": "minecraft:crimson_door"
           }
         ]
       },
@@ -30,6 +28,5 @@
     "recipes": [
       "simple_woodcutter:crimson_trapdoor_from_crimson_door_woodcutting"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

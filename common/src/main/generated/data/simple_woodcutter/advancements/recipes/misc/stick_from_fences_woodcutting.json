@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "minecraft:fences"
+            "items": "#minecraft:fences"
           }
         ]
       },
@@ -28,6 +28,5 @@
     "recipes": [
       "simple_woodcutter:stick_from_fences_woodcutting"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

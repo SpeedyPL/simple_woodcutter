@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:crimson_planks"
-            ]
+            "items": "minecraft:crimson_planks"
           }
         ]
       },
@@ -30,6 +28,5 @@
     "recipes": [
       "simple_woodcutter:crimson_sign_from_crimson_planks_woodcutting"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

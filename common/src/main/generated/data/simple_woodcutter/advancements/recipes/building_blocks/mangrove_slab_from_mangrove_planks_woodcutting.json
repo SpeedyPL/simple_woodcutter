@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:mangrove_planks"
-            ]
+            "items": "minecraft:mangrove_planks"
           }
         ]
       },
@@ -30,6 +28,5 @@
     "recipes": [
       "simple_woodcutter:mangrove_slab_from_mangrove_planks_woodcutting"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

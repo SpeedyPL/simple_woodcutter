@@ -1,8 +1,10 @@
 {
   "type": "simple_woodcutter:woodcutting",
-  "count": 1,
   "ingredient": {
     "item": "minecraft:crimson_slab"
   },
-  "result": "minecraft:crimson_fence_gate"
+  "result": {
+    "count": 1,
+    "id": "minecraft:crimson_fence_gate"
+  }
 }

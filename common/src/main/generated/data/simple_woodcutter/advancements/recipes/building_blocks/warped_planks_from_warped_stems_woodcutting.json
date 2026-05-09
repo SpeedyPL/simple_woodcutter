@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "minecraft:warped_stems"
+            "items": "#minecraft:warped_stems"
           }
         ]
       },
@@ -28,6 +28,5 @@
     "recipes": [
       "simple_woodcutter:warped_planks_from_warped_stems_woodcutting"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

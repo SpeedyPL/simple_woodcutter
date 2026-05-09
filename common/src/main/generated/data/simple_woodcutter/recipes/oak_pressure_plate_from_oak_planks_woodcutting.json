@@ -1,8 +1,10 @@
 {
   "type": "simple_woodcutter:woodcutting",
-  "count": 4,
   "ingredient": {
     "item": "minecraft:oak_planks"
   },
-  "result": "minecraft:oak_pressure_plate"
+  "result": {
+    "count": 4,
+    "id": "minecraft:oak_pressure_plate"
+  }
 }

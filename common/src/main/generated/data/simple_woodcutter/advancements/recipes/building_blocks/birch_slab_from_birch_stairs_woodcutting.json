@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:birch_stairs"
-            ]
+            "items": "minecraft:birch_stairs"
           }
         ]
       },
@@ -30,6 +28,5 @@
     "recipes": [
       "simple_woodcutter:birch_slab_from_birch_stairs_woodcutting"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

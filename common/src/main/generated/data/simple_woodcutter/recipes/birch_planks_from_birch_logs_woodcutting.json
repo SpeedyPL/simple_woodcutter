@@ -1,8 +1,10 @@
 {
   "type": "simple_woodcutter:woodcutting",
-  "count": 4,
   "ingredient": {
     "tag": "minecraft:birch_logs"
   },
-  "result": "minecraft:birch_planks"
+  "result": {
+    "count": 4,
+    "id": "minecraft:birch_planks"
+  }
 }

@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:warped_slab"
-            ]
+            "items": "minecraft:warped_slab"
           }
         ]
       },
@@ -30,6 +28,5 @@
     "recipes": [
       "simple_woodcutter:warped_sign_from_warped_slab_woodcutting"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

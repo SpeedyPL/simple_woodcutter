@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "minecraft:saplings"
+            "items": "#minecraft:saplings"
           }
         ]
       },
@@ -28,6 +28,5 @@
     "recipes": [
       "simple_woodcutter:stick_from_saplings_woodcutting"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

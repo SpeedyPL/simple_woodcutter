@@ -1,9 +1,9 @@
 package net.zebatek.simple_woodcutter.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
@@ -25,17 +25,25 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class WoodCutterBlock extends HorizontalDirectionalBlock {
-    public WoodCutterBlock() {
-        super(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.COPPER).noOcclusion());
-        this.registerDefaultState((BlockState)((BlockState)this.stateDefinition.any()).setValue(FACING, Direction.NORTH));
-    }
+    public static final MapCodec<WoodCutterBlock> CODEC = simpleCodec(WoodCutterBlock::new);
 
-    protected static final VoxelShape SHAPE = Block.box(0,0,0,16,12,16);
+    private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 9.0D, 16.0D);
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     private static final Component TITLE = Component.translatable("block.simple_woodcutter.woodcutter");
 
+    public WoodCutterBlock(BlockBehaviour.Properties properties) {
+        super(properties);
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+    }
+
+    @Override
+    protected MapCodec<WoodCutterBlock> codec() {
+        return CODEC;
+    }
+
+    @Override
     public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
-        return (BlockState)this.defaultBlockState().setValue(FACING, blockPlaceContext.getHorizontalDirection().getOpposite());
+        return this.defaultBlockState().setValue(FACING, blockPlaceContext.getHorizontalDirection().getOpposite());
     }
 
     @Override
@@ -49,10 +57,10 @@ public class WoodCutterBlock extends HorizontalDirectionalBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if(level.isClientSide){
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+        if (level.isClientSide) {
             return InteractionResult.SUCCESS;
-        }else{
+        } else {
             player.openMenu(state.getMenuProvider(level, pos));
             return InteractionResult.CONSUME;
         }

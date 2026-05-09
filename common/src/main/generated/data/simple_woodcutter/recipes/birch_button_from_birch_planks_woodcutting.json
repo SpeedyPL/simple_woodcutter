@@ -1,8 +1,10 @@
 {
   "type": "simple_woodcutter:woodcutting",
-  "count": 27,
   "ingredient": {
     "item": "minecraft:birch_planks"
   },
-  "result": "minecraft:birch_button"
+  "result": {
+    "count": 27,
+    "id": "minecraft:birch_button"
+  }
 }

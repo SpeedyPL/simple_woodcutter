@@ -1,8 +1,10 @@
 {
   "type": "simple_woodcutter:woodcutting",
-  "count": 1,
   "ingredient": {
     "item": "minecraft:jungle_planks"
   },
-  "result": "minecraft:jungle_door"
+  "result": {
+    "count": 1,
+    "id": "minecraft:jungle_door"
+  }
 }

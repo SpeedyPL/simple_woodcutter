@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:dead_bush"
-            ]
+            "items": "minecraft:dead_bush"
           }
         ]
       },
@@ -30,6 +28,5 @@
     "recipes": [
       "simple_woodcutter:stick_from_dead_bush_woodcutting"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

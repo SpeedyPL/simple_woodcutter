@@ -1,8 +1,10 @@
 {
   "type": "simple_woodcutter:woodcutting",
-  "count": 1,
   "ingredient": {
     "item": "minecraft:birch_slab"
   },
-  "result": "minecraft:birch_fence_gate"
+  "result": {
+    "count": 1,
+    "id": "minecraft:birch_fence_gate"
+  }
 }

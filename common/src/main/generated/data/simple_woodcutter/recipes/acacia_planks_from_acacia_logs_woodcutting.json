@@ -1,8 +1,10 @@
 {
   "type": "simple_woodcutter:woodcutting",
-  "count": 4,
   "ingredient": {
     "tag": "minecraft:acacia_logs"
   },
-  "result": "minecraft:acacia_planks"
+  "result": {
+    "count": 4,
+    "id": "minecraft:acacia_planks"
+  }
 }

@@ -1,8 +1,10 @@
 {
   "type": "simple_woodcutter:woodcutting",
-  "count": 2,
   "ingredient": {
     "item": "minecraft:birch_slab"
   },
-  "result": "minecraft:birch_sign"
+  "result": {
+    "count": 2,
+    "id": "minecraft:birch_sign"
+  }
 }

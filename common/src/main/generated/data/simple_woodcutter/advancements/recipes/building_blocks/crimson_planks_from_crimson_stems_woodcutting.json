@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "minecraft:crimson_stems"
+            "items": "#minecraft:crimson_stems"
           }
         ]
       },
@@ -28,6 +28,5 @@
     "recipes": [
       "simple_woodcutter:crimson_planks_from_crimson_stems_woodcutting"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

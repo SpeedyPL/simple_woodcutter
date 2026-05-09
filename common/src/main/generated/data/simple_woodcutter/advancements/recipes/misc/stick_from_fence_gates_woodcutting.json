@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "minecraft:fence_gates"
+            "items": "#minecraft:fence_gates"
           }
         ]
       },
@@ -28,6 +28,5 @@
     "recipes": [
       "simple_woodcutter:stick_from_fence_gates_woodcutting"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

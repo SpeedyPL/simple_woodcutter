@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:mangrove_slab"
-            ]
+            "items": "minecraft:mangrove_slab"
           }
         ]
       },
@@ -30,6 +28,5 @@
     "recipes": [
       "simple_woodcutter:mangrove_fence_gate_from_mangrove_slab_woodcutting"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

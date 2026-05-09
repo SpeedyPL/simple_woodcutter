@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:ladder"
-            ]
+            "items": "minecraft:ladder"
           }
         ]
       },
@@ -30,6 +28,5 @@
     "recipes": [
       "simple_woodcutter:stick_from_ladder_woodcutting"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

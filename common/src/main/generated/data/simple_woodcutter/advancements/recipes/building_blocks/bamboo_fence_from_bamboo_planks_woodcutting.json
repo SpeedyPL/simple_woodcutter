@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:bamboo_planks"
-            ]
+            "items": "minecraft:bamboo_planks"
           }
         ]
       },
@@ -30,6 +28,5 @@
     "recipes": [
       "simple_woodcutter:bamboo_fence_from_bamboo_planks_woodcutting"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

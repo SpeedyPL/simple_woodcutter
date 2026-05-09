@@ -11,4 +11,4 @@ rootProject.name = 'simple_woodcutter'
 
 include 'common'
 include 'fabric'
-include 'forge'
+include 'neoforge'

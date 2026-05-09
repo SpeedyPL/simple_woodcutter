@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "minecraft:jungle_logs"
+            "items": "#minecraft:jungle_logs"
           }
         ]
       },
@@ -28,6 +28,5 @@
     "recipes": [
       "simple_woodcutter:jungle_planks_from_jungle_logs_woodcutting"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

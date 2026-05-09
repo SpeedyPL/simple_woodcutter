@@ -1,8 +1,10 @@
 {
   "type": "simple_woodcutter:woodcutting",
-  "count": 4,
   "ingredient": {
     "tag": "minecraft:warped_stems"
   },
-  "result": "minecraft:warped_planks"
+  "result": {
+    "count": 4,
+    "id": "minecraft:warped_planks"
+  }
 }

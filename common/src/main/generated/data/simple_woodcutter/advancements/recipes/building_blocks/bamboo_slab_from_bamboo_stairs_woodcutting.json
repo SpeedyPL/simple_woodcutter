@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:bamboo_stairs"
-            ]
+            "items": "minecraft:bamboo_stairs"
           }
         ]
       },
@@ -30,6 +28,5 @@
     "recipes": [
       "simple_woodcutter:bamboo_slab_from_bamboo_stairs_woodcutting"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

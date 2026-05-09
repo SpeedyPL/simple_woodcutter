@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "minecraft:planks"
+            "items": "#minecraft:planks"
           }
         ]
       },
@@ -28,6 +28,5 @@
     "recipes": [
       "simple_woodcutter:bowl_from_planks_woodcutting"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

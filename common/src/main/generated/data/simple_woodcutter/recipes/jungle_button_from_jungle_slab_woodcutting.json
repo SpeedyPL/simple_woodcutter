@@ -1,8 +1,10 @@
 {
   "type": "simple_woodcutter:woodcutting",
-  "count": 13,
   "ingredient": {
     "item": "minecraft:jungle_slab"
   },
-  "result": "minecraft:jungle_button"
+  "result": {
+    "count": 13,
+    "id": "minecraft:jungle_button"
+  }
 }

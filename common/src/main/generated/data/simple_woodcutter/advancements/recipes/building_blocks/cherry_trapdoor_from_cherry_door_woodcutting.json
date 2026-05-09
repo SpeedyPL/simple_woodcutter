@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:cherry_door"
-            ]
+            "items": "minecraft:cherry_door"
           }
         ]
       },
@@ -30,6 +28,5 @@
     "recipes": [
       "simple_woodcutter:cherry_trapdoor_from_cherry_door_woodcutting"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

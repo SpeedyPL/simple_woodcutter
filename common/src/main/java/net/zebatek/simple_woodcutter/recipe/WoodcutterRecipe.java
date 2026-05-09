@@ -3,9 +3,9 @@ package net.zebatek.simple_woodcutter.recipe;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.util.ExtraCodecs;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -16,13 +16,27 @@ import net.zebatek.simple_woodcutter.block.ModBlocks;
 import org.jetbrains.annotations.NotNull;
 
 public class WoodcutterRecipe extends SingleItemRecipe {
+    private final Ingredient inputIngredient;
+    private final ItemStack outputResult;
+    public static final SingleItemRecipe.Factory<WoodcutterRecipe> FACTORY = WoodcutterRecipe::new;
+
     public WoodcutterRecipe(String group, Ingredient ingredient, ItemStack result) {
         super(ModRecipes.WOODCUTTER_TYPE.get(), ModRecipes.WOODCUTTER_SERIALIZER.get(), group, ingredient, result);
+        this.inputIngredient = ingredient;
+        this.outputResult = result;
+    }
+
+    public Ingredient getInputIngredient() {
+        return this.inputIngredient;
+    }
+
+    public ItemStack getOutputResult() {
+        return this.outputResult;
     }
 
     @Override
     public boolean matches(Container container, Level level) {
-        return this.ingredient.test(container.getItem(0));
+        return this.inputIngredient.test(container.getItem(0));
     }
 
     @Override
@@ -31,35 +45,28 @@ public class WoodcutterRecipe extends SingleItemRecipe {
     }
 
     public static class Serializer implements RecipeSerializer<WoodcutterRecipe> {
-        private static final MapCodec<ItemStack> RESULT_CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
-                BuiltInRegistries.ITEM.byNameCodec().fieldOf("result").forGetter(ItemStack::getItem),
-                Codec.INT.optionalFieldOf("count", 1).forGetter(ItemStack::getCount)
-        ).apply(instance, ItemStack::new));
 
-        private final Codec<WoodcutterRecipe> codec = RecordCodecBuilder.create((instance) -> instance.group(
-                ExtraCodecs.strictOptionalField(Codec.STRING, "group", "").forGetter((recipe) -> recipe.group),
-                Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter((recipe) -> recipe.ingredient),
-                RESULT_CODEC.forGetter((recipe) -> recipe.result)
+        private static final MapCodec<WoodcutterRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+                Codec.STRING.optionalFieldOf("group", "").forGetter(WoodcutterRecipe::getGroup),
+                Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter(WoodcutterRecipe::getInputIngredient),
+                ItemStack.CODEC.fieldOf("result").forGetter(WoodcutterRecipe::getOutputResult)
         ).apply(instance, WoodcutterRecipe::new));
 
+        private static final StreamCodec<RegistryFriendlyByteBuf, WoodcutterRecipe> STREAM_CODEC = StreamCodec.composite(
+                ByteBufCodecs.STRING_UTF8, WoodcutterRecipe::getGroup,
+                Ingredient.CONTENTS_STREAM_CODEC, WoodcutterRecipe::getInputIngredient,
+                ItemStack.STREAM_CODEC, WoodcutterRecipe::getOutputResult,
+                WoodcutterRecipe::new
+        );
+
         @Override
-        public @NotNull Codec<WoodcutterRecipe> codec() {
-            return this.codec;
+        public @NotNull MapCodec<WoodcutterRecipe> codec() {
+            return CODEC;
         }
 
         @Override
-        public @NotNull WoodcutterRecipe fromNetwork(FriendlyByteBuf buf) {
-            String group = buf.readUtf();
-            Ingredient ingredient = Ingredient.fromNetwork(buf);
-            ItemStack result = buf.readItem();
-            return new WoodcutterRecipe(group, ingredient, result);
-        }
-
-        @Override
-        public void toNetwork(FriendlyByteBuf buf, WoodcutterRecipe recipe) {
-            buf.writeUtf(recipe.getGroup());
-            recipe.ingredient.toNetwork(buf);
-            buf.writeItem(recipe.result);
+        public @NotNull StreamCodec<RegistryFriendlyByteBuf, WoodcutterRecipe> streamCodec() {
+            return STREAM_CODEC;
         }
     }
 }

@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "minecraft:slabs"
+            "items": "#minecraft:slabs"
           }
         ]
       },
@@ -28,6 +28,5 @@
     "recipes": [
       "simple_woodcutter:stick_from_slabs_woodcutting"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }
