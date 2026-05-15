@@ -50,5 +50,4 @@ artifacts {
     commonResources sourceSets.main.resources.sourceDirectories.singleFile
 }
 
-// Add generated resources to sourceSets
 sourceSets.main.resources { srcDir 'src/main/generated' }

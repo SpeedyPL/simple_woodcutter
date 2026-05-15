@@ -16,7 +16,6 @@ repositories {
     }
 }
 
-// Add common generated resources to sourceSets
 sourceSets.main.resources { srcDir project(':common').file('src/main/generated') }
 
 dependencies {
