@@ -2,6 +2,7 @@ package net.zebatek.simple_woodcutter.recipe;
 
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
@@ -35,6 +36,6 @@ public class Woodcutting {
     }
 
     private static ResourceLocation getID(ItemLike item){
-        return item.asItem().builtInRegistryHolder().key().location();
+        return BuiltInRegistries.ITEM.getKey(item.asItem());
     }
 }

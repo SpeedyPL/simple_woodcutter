@@ -42,7 +42,7 @@ public class WoodcutterMenu extends AbstractContainerMenu {
     }
 
     public WoodcutterMenu(int id, Inventory playerInv, ContainerLevelAccess access) {
-        super(ModMenuTypes.WOODCUTTER_MENU.get(), id);
+        super(ModMenuTypes.getMENU(), id);
         this.access = access;
         this.level = playerInv.player.level();
 
@@ -158,7 +158,7 @@ public class WoodcutterMenu extends AbstractContainerMenu {
         this.selectedRecipeIndex.set(-1);
         this.resultContainer.setItem(1, ItemStack.EMPTY);
         if (!stack.isEmpty()) {
-            this.recipes = this.level.getRecipeManager().getRecipesFor(ModRecipes.WOODCUTTER_TYPE.get(), container, this.level);
+            this.recipes = this.level.getRecipeManager().getRecipesFor(ModRecipes.getTYPE(), container, this.level);
         }
     }
 

@@ -1,6 +1,5 @@
 package net.zebatek.simple_woodcutter.neoforge;
 
-import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -10,7 +9,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
@@ -20,12 +19,11 @@ import net.zebatek.simple_woodcutter.Simple_woodcutter;
 import net.zebatek.simple_woodcutter.block.ModBlocks;
 import net.zebatek.simple_woodcutter.menu.WoodcutterMenu;
 import net.zebatek.simple_woodcutter.menu.WoodcutterScreen;
-import net.zebatek.simple_woodcutter.recipe.ModRecipes;
 import net.zebatek.simple_woodcutter.recipe.WoodcutterRecipe;
 import net.zebatek.simple_woodcutter.registry.ModMenuTypes;
 
 @Mod(Simple_woodcutter.MOD_ID)
-public final class Simple_woodcutterNeoForge {
+public final class SimpleWoodcutterNeoForge {
 
     private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(BuiltInRegistries.BLOCK, Simple_woodcutter.MOD_ID);
     private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(BuiltInRegistries.ITEM, Simple_woodcutter.MOD_ID);
@@ -33,7 +31,10 @@ public final class Simple_woodcutterNeoForge {
     private static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = DeferredRegister.create(BuiltInRegistries.RECIPE_SERIALIZER, Simple_woodcutter.MOD_ID);
     private static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(BuiltInRegistries.RECIPE_TYPE, Simple_woodcutter.MOD_ID);
 
-    public static final DeferredHolder<MenuType<?>, MenuType<WoodcutterMenu>> FG_WOODCUTTER_MENU = MENUS.register(
+    public static final DeferredHolder<Block, Block> WOODCUTTER_BLOCK = BLOCKS.register("woodcutter", ModBlocks::createWoodcutterBlock);
+    public static final DeferredHolder<Item, Item> WOODCUTTER_ITEM = ITEMS.register("woodcutter", () -> ModBlocks.createWoodcutterItem(WOODCUTTER_BLOCK.get()));
+
+    public static final DeferredHolder<MenuType<?>, MenuType<WoodcutterMenu>> WOODCUTTER_MENU = MENUS.register(
             "woodcutter",
             () -> IMenuTypeExtension.create((id, inv, data) -> new WoodcutterMenu(id, inv))
     );
@@ -43,37 +44,38 @@ public final class Simple_woodcutterNeoForge {
 
     public static final DeferredHolder<RecipeType<?> ,RecipeType<WoodcutterRecipe>> WOODCUTTER_TYPE = RECIPE_TYPES.register(
             "woodcutting", () -> new RecipeType<WoodcutterRecipe>() {
-
                 @Override
                 public String toString() { return "woodcutting"; }
             });
 
-    public Simple_woodcutterNeoForge(IEventBus eventBus) {
-        BLOCKS.register("woodcutter", () -> ModBlocks.WOODCUTTER);
-        ITEMS.register("woodcutter", () -> ModBlocks.WOODCUTTER_ITEM);
-
-        ModMenuTypes.WOODCUTTER_MENU = FG_WOODCUTTER_MENU;
-        ModRecipes.WOODCUTTER_SERIALIZER = WOODCUTTER_SERIALIZER;
-        ModRecipes.WOODCUTTER_TYPE = WOODCUTTER_TYPE;
-
+    public SimpleWoodcutterNeoForge(IEventBus eventBus) {
         BLOCKS.register(eventBus);
         ITEMS.register(eventBus);
         MENUS.register(eventBus);
         SERIALIZERS.register(eventBus);
         RECIPE_TYPES.register(eventBus);
 
+        eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);
         eventBus.addListener(this::addCreative);
+
         Simple_woodcutter.init();
     }
 
+    private void setup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            ModBlocks.WOODCUTTER = WOODCUTTER_BLOCK.get();
+            ModBlocks.WOODCUTTER_ITEM = WOODCUTTER_ITEM.get();
+        });
+    }
+
     private void clientSetup(final RegisterMenuScreensEvent event){
-        event.register(ModMenuTypes.WOODCUTTER_MENU.get(), WoodcutterScreen::new);
+        event.register(ModMenuTypes.getMENU(), WoodcutterScreen::new);
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event){
         if(event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS){
-            event.accept(ModBlocks.WOODCUTTER_ITEM);
+            event.accept(WOODCUTTER_ITEM.get());
         }
     }
 }

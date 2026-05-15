@@ -7,6 +7,17 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 public class ModBlocks {
-    public static final Block WOODCUTTER = new WoodCutterBlock(BlockBehaviour.Properties.of().noOcclusion().strength(2f).sound(SoundType.COPPER));
-    public static final Item WOODCUTTER_ITEM = new BlockItem(WOODCUTTER, new Item.Properties());
+    public static Block createWoodcutterBlock() {
+        return new WoodCutterBlock(BlockBehaviour.Properties.of()
+                .noOcclusion()
+                .strength(2f)
+                .sound(SoundType.COPPER));
+
+    }
+    public static Item createWoodcutterItem(Block block) {
+        return new BlockItem(block, new Item.Properties());
+    }
+
+    public static Block WOODCUTTER;
+    public static Item WOODCUTTER_ITEM;
 }

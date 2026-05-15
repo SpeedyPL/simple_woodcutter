@@ -1,36 +1,37 @@
 {
   "schemaVersion": 1,
-  "id": "simple_woodcutter",
+  "id": "${mod_id}",
   "version": "${version}",
-  "name": "Simple Woodcutter",
-  "description": "This mod adds a simple vanilla-like woodcutter. It's easy to craft and it has over 100 built-in recipes. You can also use it in your own mod, for example to add custom recipes to your custom wood etc.",
+  "name": "${mod_name}",
+  "description": "${description}",
   "authors": [
-    "Zebatek"
+    "${mod_author}"
   ],
   "contact": {
-    "homepage": "https://www.curseforge.com/minecraft/mc-mods/simple-woodcutter"
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
-  "license": "MIT",
+  "license": "${license}",
   "icon": "icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.zebatek.simple_woodcutter.fabric.Simple_woodcutterFabric"
+      "net.zebatek.simple_woodcutter.fabric.SimpleWoodcutterFabric"
     ],
     "client": [
-      "net.zebatek.simple_woodcutter.fabric.client.Simple_woodcutterFabricClient"
+      "net.zebatek.simple_woodcutter.fabric.client.SimpleWoodcutterFabricClient"
     ],
     "fabric-datagen": [
       "net.zebatek.simple_woodcutter.fabric.datagen.DataGen"
     ],
     "jei_mod_plugin": [
-      "net.zebatek.simple_woodcutter.fabric.compat.JeiWoodcuttingPluginFabric"
+      "net.zebatek.simple_woodcutter.compat.JeiWoodcuttingPlugin"
     ]
   },
   "depends": {
-    "fabricloader": ">=0.19.2",
-    "minecraft": "1.20.5 || 1.20.6",
-    "java": ">=21",
-    "fabric-api": "*"
+    "fabricloader": ">=${fabric_loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}",
+    "java": ">=${java_version}"
   }
 }

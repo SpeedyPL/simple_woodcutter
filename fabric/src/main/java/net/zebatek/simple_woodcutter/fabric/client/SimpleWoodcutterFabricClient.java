@@ -8,10 +8,10 @@ import net.zebatek.simple_woodcutter.block.ModBlocks;
 import net.zebatek.simple_woodcutter.menu.WoodcutterScreen;
 import net.zebatek.simple_woodcutter.registry.ModMenuTypes;
 
-public final class Simple_woodcutterFabricClient implements ClientModInitializer {
+public final class SimpleWoodcutterFabricClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        MenuScreens.register(ModMenuTypes.WOODCUTTER_MENU.get(), WoodcutterScreen::new);
+        MenuScreens.register(ModMenuTypes.getMENU(), WoodcutterScreen::new);
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WOODCUTTER, RenderType.cutout());
     }
 }

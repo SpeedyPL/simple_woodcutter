@@ -21,7 +21,7 @@ public class WoodcutterRecipe extends SingleItemRecipe {
     public static final SingleItemRecipe.Factory<WoodcutterRecipe> FACTORY = WoodcutterRecipe::new;
 
     public WoodcutterRecipe(String group, Ingredient ingredient, ItemStack result) {
-        super(ModRecipes.WOODCUTTER_TYPE.get(), ModRecipes.WOODCUTTER_SERIALIZER.get(), group, ingredient, result);
+        super(ModRecipes.getTYPE(), ModRecipes.getSERIALIZER(), group, ingredient, result);
         this.inputIngredient = ingredient;
         this.outputResult = result;
     }

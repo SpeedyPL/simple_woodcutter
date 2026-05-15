@@ -6,6 +6,11 @@ import net.zebatek.simple_woodcutter.recipe.ModRecipes;
 import net.zebatek.simple_woodcutter.recipe.WoodcutterRecipe;
 
 public class WoodcutterAPI {
-    public static final RecipeType<WoodcutterRecipe> TYPE = ModRecipes.WOODCUTTER_TYPE.get();
-    public static final RecipeSerializer<WoodcutterRecipe> SERIALIZER = ModRecipes.WOODCUTTER_SERIALIZER.get();
+    public static RecipeType<WoodcutterRecipe> getRecipeType() {
+        return ModRecipes.getTYPE();
+    }
+
+    public static RecipeSerializer<WoodcutterRecipe> getRecipeSerializer() {
+        return ModRecipes.getSERIALIZER();
+    }
 }
