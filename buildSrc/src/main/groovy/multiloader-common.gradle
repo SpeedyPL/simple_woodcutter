@@ -112,6 +112,9 @@ publishing {
         register('mavenJava', MavenPublication) {
             artifactId base.archivesName.get()
             from components.java
+
+            artifact sourcesJar
+            artifact javadocJar
         }
     }
     repositories {
