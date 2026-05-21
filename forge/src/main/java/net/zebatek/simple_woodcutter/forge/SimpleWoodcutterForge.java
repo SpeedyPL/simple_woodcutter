@@ -16,20 +16,20 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import net.zebatek.simple_woodcutter.Simple_woodcutter;
+import net.zebatek.simple_woodcutter.SimpleWoodcutter;
 import net.zebatek.simple_woodcutter.block.ModBlocks;
 import net.zebatek.simple_woodcutter.menu.WoodcutterMenu;
 import net.zebatek.simple_woodcutter.menu.WoodcutterScreen;
 import net.zebatek.simple_woodcutter.recipe.WoodcutterRecipe;
 
-@Mod(Simple_woodcutter.MOD_ID)
+@Mod(SimpleWoodcutter.MOD_ID)
 public final class SimpleWoodcutterForge {
 
-    private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Simple_woodcutter.MOD_ID);
-    private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Simple_woodcutter.MOD_ID);
-    private static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, Simple_woodcutter.MOD_ID);
-    private static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, Simple_woodcutter.MOD_ID);
-    private static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(ForgeRegistries.RECIPE_TYPES, Simple_woodcutter.MOD_ID);
+    private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, SimpleWoodcutter.MOD_ID);
+    private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, SimpleWoodcutter.MOD_ID);
+    private static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, SimpleWoodcutter.MOD_ID);
+    private static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, SimpleWoodcutter.MOD_ID);
+    private static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(ForgeRegistries.RECIPE_TYPES, SimpleWoodcutter.MOD_ID);
 
     public static final RegistryObject<Block> WOODCUTTER_BLOCK = BLOCKS.register("woodcutter", ModBlocks::createWoodcutterBlock);
     public static final RegistryObject<Item> WOODCUTTER_ITEM = ITEMS.register("woodcutter", () -> ModBlocks.createWoodcutterItem(WOODCUTTER_BLOCK.get()));
@@ -59,7 +59,7 @@ public final class SimpleWoodcutterForge {
         eventBus.addListener(this::setup);
         eventBus.addListener(this::addCreative);
 
-        Simple_woodcutter.init();
+        SimpleWoodcutter.init();
     }
 
     private void setup(final FMLCommonSetupEvent event) {

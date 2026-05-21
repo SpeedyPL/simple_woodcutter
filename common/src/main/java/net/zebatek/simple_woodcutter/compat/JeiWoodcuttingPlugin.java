@@ -10,7 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
-import net.zebatek.simple_woodcutter.Simple_woodcutter;
+import net.zebatek.simple_woodcutter.SimpleWoodcutter;
 import net.zebatek.simple_woodcutter.block.ModBlocks;
 import net.zebatek.simple_woodcutter.recipe.ModRecipes;
 import net.zebatek.simple_woodcutter.recipe.WoodcutterRecipe;
@@ -23,7 +23,7 @@ public class JeiWoodcuttingPlugin implements IModPlugin {
 
     @Override
     public @NotNull ResourceLocation getPluginUid() {
-        return new ResourceLocation(Simple_woodcutter.MOD_ID, "jei_plugin");
+        return new ResourceLocation(SimpleWoodcutter.MOD_ID, "jei_plugin");
     }
 
     @Override

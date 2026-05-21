@@ -11,7 +11,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
-import net.zebatek.simple_woodcutter.Simple_woodcutter;
+import net.zebatek.simple_woodcutter.SimpleWoodcutter;
 
 public class Woodcutting {
     public static void woodcutting(RecipeCategory category, RecipeOutput output, ItemLike input, ItemLike result, int count){
@@ -23,7 +23,7 @@ public class Woodcutting {
                 count
         ).unlockedBy("has_" + getID(input).getPath(),
                         InventoryChangeTrigger.TriggerInstance.hasItems(input))
-                .save(output, new ResourceLocation(Simple_woodcutter.MOD_ID,
+                .save(output, new ResourceLocation(SimpleWoodcutter.MOD_ID,
                         getID(result).getPath() + "_from_" + getID(input).getPath() + "_woodcutting"));
     }
 
@@ -31,7 +31,7 @@ public class Woodcutting {
         new SingleItemRecipeBuilder(category, WoodcutterRecipe.FACTORY, Ingredient.of(inputTag), result, count)
                 .unlockedBy("has_" + inputTag.location().getPath(),
                         InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(inputTag).build()))
-                .save(output, new ResourceLocation(Simple_woodcutter.MOD_ID,
+                .save(output, new ResourceLocation(SimpleWoodcutter.MOD_ID,
                         getID(result).getPath() + "_from_" + inputTag.location().getPath() + "_woodcutting"));
     }
 

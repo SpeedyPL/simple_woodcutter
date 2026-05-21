@@ -1,3 +1,5 @@
+// == buildSrc build.gradle ==
+
 plugins {
     id 'groovy-gradle-plugin'
 }

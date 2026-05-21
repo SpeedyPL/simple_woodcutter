@@ -1,3 +1,5 @@
+// == multiloader-loader.gradle ==
+
 plugins {
     id 'multiloader-common'
 }

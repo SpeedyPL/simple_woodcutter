@@ -14,13 +14,13 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.zebatek.simple_woodcutter.Simple_woodcutter;
+import net.zebatek.simple_woodcutter.SimpleWoodcutter;
 import net.zebatek.simple_woodcutter.block.ModBlocks;
 import net.zebatek.simple_woodcutter.recipe.WoodcutterRecipe;
 
 public class WoodcuttingCategory implements IRecipeCategory<WoodcutterRecipe> {
 
-    public static final ResourceLocation UID = new ResourceLocation(Simple_woodcutter.MOD_ID, "woodcutting");
+    public static final ResourceLocation UID = new ResourceLocation(SimpleWoodcutter.MOD_ID, "woodcutting");
     public static final RecipeType<WoodcutterRecipe> WOODCUTTING_TYPE = new RecipeType<>(UID, WoodcutterRecipe.class);
 
     private final IDrawable background;

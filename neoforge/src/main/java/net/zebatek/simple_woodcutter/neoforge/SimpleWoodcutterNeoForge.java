@@ -15,21 +15,21 @@ import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.zebatek.simple_woodcutter.Simple_woodcutter;
+import net.zebatek.simple_woodcutter.SimpleWoodcutter;
 import net.zebatek.simple_woodcutter.block.ModBlocks;
 import net.zebatek.simple_woodcutter.menu.WoodcutterMenu;
 import net.zebatek.simple_woodcutter.menu.WoodcutterScreen;
 import net.zebatek.simple_woodcutter.recipe.WoodcutterRecipe;
 import net.zebatek.simple_woodcutter.registry.ModMenuTypes;
 
-@Mod(Simple_woodcutter.MOD_ID)
+@Mod(SimpleWoodcutter.MOD_ID)
 public final class SimpleWoodcutterNeoForge {
 
-    private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(BuiltInRegistries.BLOCK, Simple_woodcutter.MOD_ID);
-    private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(BuiltInRegistries.ITEM, Simple_woodcutter.MOD_ID);
-    private static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(BuiltInRegistries.MENU, Simple_woodcutter.MOD_ID);
-    private static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = DeferredRegister.create(BuiltInRegistries.RECIPE_SERIALIZER, Simple_woodcutter.MOD_ID);
-    private static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(BuiltInRegistries.RECIPE_TYPE, Simple_woodcutter.MOD_ID);
+    private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(BuiltInRegistries.BLOCK, SimpleWoodcutter.MOD_ID);
+    private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(BuiltInRegistries.ITEM, SimpleWoodcutter.MOD_ID);
+    private static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(BuiltInRegistries.MENU, SimpleWoodcutter.MOD_ID);
+    private static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = DeferredRegister.create(BuiltInRegistries.RECIPE_SERIALIZER, SimpleWoodcutter.MOD_ID);
+    private static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(BuiltInRegistries.RECIPE_TYPE, SimpleWoodcutter.MOD_ID);
 
     public static final DeferredHolder<Block, Block> WOODCUTTER_BLOCK = BLOCKS.register("woodcutter", ModBlocks::createWoodcutterBlock);
     public static final DeferredHolder<Item, Item> WOODCUTTER_ITEM = ITEMS.register("woodcutter", () -> ModBlocks.createWoodcutterItem(WOODCUTTER_BLOCK.get()));
@@ -59,7 +59,7 @@ public final class SimpleWoodcutterNeoForge {
         eventBus.addListener(this::clientSetup);
         eventBus.addListener(this::addCreative);
 
-        Simple_woodcutter.init();
+        SimpleWoodcutter.init();
     }
 
     private void setup(final FMLCommonSetupEvent event) {

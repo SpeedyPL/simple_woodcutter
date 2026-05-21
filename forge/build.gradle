@@ -1,3 +1,5 @@
+// == forge build.gradle ==
+
 plugins {
     id 'multiloader-loader'
     id 'net.minecraftforge.gradle' version '[6.0.24,6.2)'
@@ -70,7 +72,8 @@ repositories {
     maven {
         name = "ModMaven"
         url = "https://modmaven.dev/"
-    }}
+    }
+}
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
@@ -79,14 +82,6 @@ dependencies {
     implementation('net.sf.jopt-simple:jopt-simple:5.0.4') { version { strictly '5.0.4' } }
     compileOnly("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
     //runtimeOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
-}
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            fg.component(it)
-        }
-    }
 }
 
 sourceSets.each {
