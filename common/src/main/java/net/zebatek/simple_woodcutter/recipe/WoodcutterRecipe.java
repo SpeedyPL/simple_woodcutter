@@ -6,11 +6,11 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SingleItemRecipe;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 import net.zebatek.simple_woodcutter.block.ModBlocks;
 import org.jetbrains.annotations.NotNull;
@@ -35,7 +35,7 @@ public class WoodcutterRecipe extends SingleItemRecipe {
     }
 
     @Override
-    public boolean matches(Container container, Level level) {
+    public boolean matches(SingleRecipeInput container, Level level) {
         return this.inputIngredient.test(container.getItem(0));
     }
 

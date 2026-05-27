@@ -14,12 +14,12 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.zebatek.simple_woodcutter.recipe.WoodcutterRecipe;
 
 public class WoodcutterScreen extends AbstractContainerScreen<WoodcutterMenu> {
-    private static final ResourceLocation SCROLLER_SPRITE = new ResourceLocation("container/stonecutter/scroller");
-    private static final ResourceLocation SCROLLER_DISABLED_SPRITE = new ResourceLocation("container/stonecutter/scroller_disabled");
-    private static final ResourceLocation RECIPE_SELECTED_SPRITE = new ResourceLocation("container/stonecutter/recipe_selected");
-    private static final ResourceLocation RECIPE_HIGHLIGHTED_SPRITE = new ResourceLocation("container/stonecutter/recipe_highlighted");
-    private static final ResourceLocation RECIPE_SPRITE = new ResourceLocation("container/stonecutter/recipe");
-    private static final ResourceLocation BG_LOCATION = new ResourceLocation("textures/gui/container/stonecutter.png");
+    private static final ResourceLocation SCROLLER_SPRITE = ResourceLocation.fromNamespaceAndPath("minecraft", "container/stonecutter/scroller");
+    private static final ResourceLocation SCROLLER_DISABLED_SPRITE = ResourceLocation.fromNamespaceAndPath("minecraft", "container/stonecutter/scroller_disabled");
+    private static final ResourceLocation RECIPE_SELECTED_SPRITE = ResourceLocation.fromNamespaceAndPath("minecraft","container/stonecutter/recipe_selected");
+    private static final ResourceLocation RECIPE_HIGHLIGHTED_SPRITE = ResourceLocation.fromNamespaceAndPath("minecraft","container/stonecutter/recipe_highlighted");
+    private static final ResourceLocation RECIPE_SPRITE = ResourceLocation.fromNamespaceAndPath("minecraft","container/stonecutter/recipe");
+    private static final ResourceLocation BG_LOCATION = ResourceLocation.fromNamespaceAndPath("minecraft","textures/gui/container/stonecutter.png");
     private float scrollOffs;
     private boolean scrolling;
     private int startIndex;

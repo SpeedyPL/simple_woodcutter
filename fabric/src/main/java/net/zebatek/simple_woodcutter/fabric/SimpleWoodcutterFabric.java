@@ -31,26 +31,26 @@ public final class SimpleWoodcutterFabric implements ModInitializer {
         WOODCUTTER_ITEM = ModBlocks.createWoodcutterItem(WOODCUTTER);
 
         Registry.register(BuiltInRegistries.BLOCK,
-                new ResourceLocation(SimpleWoodcutter.MOD_ID, "woodcutter"), WOODCUTTER);
+                ResourceLocation.fromNamespaceAndPath(SimpleWoodcutter.MOD_ID, "woodcutter"), WOODCUTTER);
 
         Registry.register(BuiltInRegistries.ITEM,
-                new ResourceLocation(SimpleWoodcutter.MOD_ID, "woodcutter"), WOODCUTTER_ITEM);
+                ResourceLocation.fromNamespaceAndPath(SimpleWoodcutter.MOD_ID, "woodcutter"), WOODCUTTER_ITEM);
 
         WOODCUTTER_MENU = Registry.register(
                 BuiltInRegistries.MENU,
-                new ResourceLocation(SimpleWoodcutter.MOD_ID, "woodcutter"),
+                ResourceLocation.fromNamespaceAndPath(SimpleWoodcutter.MOD_ID, "woodcutter"),
                 new MenuType<>(WoodcutterMenu::new, FeatureFlags.VANILLA_SET)
         );
 
         WOODCUTTER_SERIALIZER = Registry.register(
                 BuiltInRegistries.RECIPE_SERIALIZER,
-                new ResourceLocation(SimpleWoodcutter.MOD_ID, "woodcutting"),
+                ResourceLocation.fromNamespaceAndPath(SimpleWoodcutter.MOD_ID, "woodcutting"),
                 new WoodcutterRecipe.Serializer()
         );
 
         WOODCUTTER_TYPE = Registry.register(
                 BuiltInRegistries.RECIPE_TYPE,
-                new ResourceLocation(SimpleWoodcutter.MOD_ID, "woodcutting"),
+                ResourceLocation.fromNamespaceAndPath(SimpleWoodcutter.MOD_ID, "woodcutting"),
                 new RecipeType<WoodcutterRecipe>() {
                     @Override
                     public String toString() { return "woodcutting"; }

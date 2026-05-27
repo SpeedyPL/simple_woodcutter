@@ -23,7 +23,7 @@ public class JeiWoodcuttingPlugin implements IModPlugin {
 
     @Override
     public @NotNull ResourceLocation getPluginUid() {
-        return new ResourceLocation(SimpleWoodcutter.MOD_ID, "jei_plugin");
+        return ResourceLocation.fromNamespaceAndPath(SimpleWoodcutter.MOD_ID, "jei_plugin");
     }
 
     @Override

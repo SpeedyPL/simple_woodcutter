@@ -23,7 +23,7 @@ public class Woodcutting {
                 count
         ).unlockedBy("has_" + getID(input).getPath(),
                         InventoryChangeTrigger.TriggerInstance.hasItems(input))
-                .save(output, new ResourceLocation(SimpleWoodcutter.MOD_ID,
+                .save(output, ResourceLocation.fromNamespaceAndPath(SimpleWoodcutter.MOD_ID,
                         getID(result).getPath() + "_from_" + getID(input).getPath() + "_woodcutting"));
     }
 
@@ -31,7 +31,7 @@ public class Woodcutting {
         new SingleItemRecipeBuilder(category, WoodcutterRecipe.FACTORY, Ingredient.of(inputTag), result, count)
                 .unlockedBy("has_" + inputTag.location().getPath(),
                         InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(inputTag).build()))
-                .save(output, new ResourceLocation(SimpleWoodcutter.MOD_ID,
+                .save(output, ResourceLocation.fromNamespaceAndPath(SimpleWoodcutter.MOD_ID,
                         getID(result).getPath() + "_from_" + inputTag.location().getPath() + "_woodcutting"));
     }
 

@@ -9,6 +9,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 import net.zebatek.simple_woodcutter.block.ModBlocks;
 import net.zebatek.simple_woodcutter.recipe.ModRecipes;
@@ -158,7 +159,8 @@ public class WoodcutterMenu extends AbstractContainerMenu {
         this.selectedRecipeIndex.set(-1);
         this.resultContainer.setItem(1, ItemStack.EMPTY);
         if (!stack.isEmpty()) {
-            this.recipes = this.level.getRecipeManager().getRecipesFor(ModRecipes.getTYPE(), container, this.level);
+            SingleRecipeInput recipeInput = new SingleRecipeInput(stack);
+            this.recipes = this.level.getRecipeManager().getRecipesFor(ModRecipes.getTYPE(), recipeInput, this.level);
         }
     }
 
@@ -175,7 +177,8 @@ public class WoodcutterMenu extends AbstractContainerMenu {
     private void setupResultSlot() {
         if (!this.recipes.isEmpty() && this.selectedRecipeIndex.get() != -1) {
             WoodcutterRecipe recipe = this.recipes.get(this.selectedRecipeIndex.get()).value();
-            this.resultContainer.setItem(1, recipe.assemble(this.container, this.level.registryAccess()));
+            SingleRecipeInput recipeInput = new SingleRecipeInput(this.container.getItem(0));
+            this.resultContainer.setItem(1, recipe.assemble(recipeInput, this.level.registryAccess()));
         } else {
             this.resultContainer.setItem(1, ItemStack.EMPTY);
         }

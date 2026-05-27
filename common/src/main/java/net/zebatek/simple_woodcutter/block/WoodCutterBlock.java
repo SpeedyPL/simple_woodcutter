@@ -27,7 +27,7 @@ import org.jetbrains.annotations.Nullable;
 public class WoodCutterBlock extends HorizontalDirectionalBlock {
     public static final MapCodec<WoodCutterBlock> CODEC = simpleCodec(WoodCutterBlock::new);
 
-    private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 9.0D, 16.0D);
+    private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D);
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     private static final Component TITLE = Component.translatable("block.simple_woodcutter.woodcutter");
 

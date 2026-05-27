@@ -33,7 +33,7 @@ dependencies {
     compileOnly group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.3.5'
     annotationProcessor group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.3.5'
 
-    compileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
+    compileOnly("mezz.jei:jei-${jei_mc_ver}-common-api:${jei_version}")
 }
 
 configurations {
@@ -49,7 +49,9 @@ configurations {
 
 artifacts {
     commonJava sourceSets.main.java.sourceDirectories.singleFile
-    commonResources sourceSets.main.resources.sourceDirectories.singleFile
+    commonResources(sourceSets.main.output.resourcesDir) {
+        builtBy processResources
+    }
 }
 
 sourceSets.main.resources { srcDir 'src/main/generated' }
