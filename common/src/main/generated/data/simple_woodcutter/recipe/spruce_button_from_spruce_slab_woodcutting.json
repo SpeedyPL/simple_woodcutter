@@ -1,0 +1,10 @@
+{
+  "type": "simple_woodcutter:woodcutting",
+  "ingredient": {
+    "item": "minecraft:spruce_slab"
+  },
+  "result": {
+    "count": 13,
+    "id": "minecraft:spruce_button"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "simple_woodcutter:woodcutting",
+  "ingredient": {
+    "tag": "minecraft:cherry_logs"
+  },
+  "result": {
+    "count": 4,
+    "id": "minecraft:cherry_planks"
+  }
+}

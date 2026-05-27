@@ -1,0 +1,10 @@
+{
+  "type": "simple_woodcutter:woodcutting",
+  "ingredient": {
+    "tag": "minecraft:mangrove_logs"
+  },
+  "result": {
+    "count": 4,
+    "id": "minecraft:mangrove_planks"
+  }
+}
