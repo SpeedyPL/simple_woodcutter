@@ -1,0 +1,10 @@
+{
+  "type": "simple_woodcutter:woodcutting",
+  "ingredient": {
+    "tag": "minecraft:slabs"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:bowl"
+  }
+}

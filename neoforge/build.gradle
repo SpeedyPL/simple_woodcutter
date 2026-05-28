@@ -37,8 +37,9 @@ neoForge {
     }
 }
 
-sourceSets.main.resources { 
+sourceSets.main.resources {
     srcDir 'src/generated/resources'
+    srcDir project(':common').file('src/main/generated')
 }
 
 repositories {
@@ -55,6 +56,6 @@ repositories {
 }
 
 dependencies {
-    compileOnly("mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}")
-    //runtimeOnly("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}")
+    compileOnly("mezz.jei:jei-${jei_mc}-neoforge-api:${jei_version}")
+    //runtimeOnly("mezz.jei:jei-${jei_mc}-neoforge:${jei_version}")
 }

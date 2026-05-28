@@ -29,7 +29,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
+    compileOnly("mezz.jei:jei-${jei_mc}-common-api:${jei_version}")
 }
 
 configurations {
@@ -45,9 +45,7 @@ configurations {
 
 artifacts {
     commonJava sourceSets.main.java.sourceDirectories.singleFile
-    commonResources(sourceSets.main.output.resourcesDir) {
-        builtBy processResources
-    }
+    commonResources sourceSets.main.resources.sourceDirectories.singleFile
 }
 
 sourceSets.main.resources { srcDir 'src/main/generated' }

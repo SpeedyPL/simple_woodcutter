@@ -1,0 +1,10 @@
+{
+  "type": "simple_woodcutter:woodcutting",
+  "ingredient": {
+    "item": "minecraft:dark_oak_stairs"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:dark_oak_slab"
+  }
+}
