@@ -2,17 +2,15 @@
 
 plugins {
     id 'multiloader-loader'
-    id 'fabric-loom'
+    id 'net.fabricmc.fabric-loom'
 }
 
 repositories {
     maven {
-        // location of the maven that hosts JEI files since January 2023
         name = "Jared's maven"
         url = "https://maven.blamejared.com/"
     }
     maven {
-       // location of a maven mirror for JEI files, as a fallback
        name = "ModMaven"
         url = "https://modmaven.dev"
     }
@@ -22,15 +20,12 @@ sourceSets.main.resources { srcDir project(':common').file('src/main/generated')
 
 dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
-    mappings loom.layered {
-        officialMojangMappings()
-        parchment("org.parchmentmc.data:parchment-${parchment_minecraft}:${parchment_version}@zip")
-    }
-    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
 
-    modCompileOnly("mezz.jei:jei-${jei_mc}-fabric-api:${jei_version}")
-    //modRuntimeOnly("mezz.jei:jei-${jei_mc}-fabric:${jei_version}")
+    implementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+
+    compileOnly("mezz.jei:jei-${jei_mc}-fabric-api:${jei_version}")
+    runtimeOnly("mezz.jei:jei-${jei_mc}-fabric:${jei_version}")
 }
 
 loom {
@@ -53,6 +48,24 @@ loom {
             setConfigName('Fabric Server')
             ideConfigGenerated(true)
             runDir('runs/server')
+        }
+    }
+}
+
+def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', String)
+['apiElements', 'runtimeElements', 'sourcesElements', 'javadocElements', 'includeInternal', 'modCompileClasspath'].each { variant ->
+    configurations.named("$variant") {
+        attributes {
+            attribute(loaderAttribute, 'fabric')
+        }
+    }
+}
+sourceSets.configureEach {
+    [it.compileClasspathConfigurationName, it.runtimeClasspathConfigurationName].each { variant->
+        configurations.named("$variant") {
+            attributes {
+                attribute(loaderAttribute, 'fabric')
+            }
         }
     }
 }

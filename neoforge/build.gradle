@@ -5,31 +5,41 @@ plugins {
     id 'net.neoforged.moddev'
 }
 
+java.toolchain.languageVersion = JavaLanguageVersion.of(25)
+
+base {
+    archivesName = "${mod_id}-neoforge-${minecraft_version}"
+}
+
 neoForge {
     version = neoforge_version
+
     def at = project(':common').file('src/main/resources/META-INF/accesstransformer.cfg')
     if (at.exists()) {
         accessTransformers.add(at.absolutePath)
     }
-    parchment {
-        minecraftVersion = parchment_minecraft
-        mappingsVersion = parchment_version
-    }
+
     runs {
         configureEach {
             systemProperty('neoforge.enabledGameTestNamespaces', mod_id)
             ideName = "NeoForge ${it.name.capitalize()} (${project.path})"
         }
+
         client {
             client()
         }
-        data {
-            data()
-        }
+
         server {
             server()
         }
+
+        clientData {
+            clientData()
+
+            programArguments.addAll '--mod', mod_id, '--all', '--output', file('src/generated/resources').absolutePath, '--existing', file('src/main/resources').absolutePath
+        }
     }
+
     mods {
         "${mod_id}" {
             sourceSet sourceSets.main
@@ -44,12 +54,10 @@ sourceSets.main.resources {
 
 repositories {
     maven {
-        // location of the maven that hosts JEI files since January 2023
         name = "Jared's maven"
         url = "https://maven.blamejared.com/"
     }
     maven {
-         //location of a maven mirror for JEI files, as a fallback
         name = "ModMaven"
         url = "https://modmaven.dev"
     }
@@ -57,5 +65,5 @@ repositories {
 
 dependencies {
     compileOnly("mezz.jei:jei-${jei_mc}-neoforge-api:${jei_version}")
-    //runtimeOnly("mezz.jei:jei-${jei_mc}-neoforge:${jei_version}")
+    runtimeOnly("mezz.jei:jei-${jei_mc}-neoforge:${jei_version}")
 }
