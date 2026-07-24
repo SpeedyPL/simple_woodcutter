@@ -1,5 +1,6 @@
 package net.zebatek.simple_woodcutter.menu;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Container;
@@ -9,11 +10,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.item.crafting.SingleRecipeInput;
+import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
 import net.zebatek.simple_woodcutter.block.ModBlocks;
+import net.zebatek.simple_woodcutter.network.ClientWoodcutterRecipes;
 import net.zebatek.simple_woodcutter.recipe.ModRecipes;
 import net.zebatek.simple_woodcutter.recipe.WoodcutterRecipe;
+import net.zebatek.simple_woodcutter.recipe.WoodcutterRecipeView;
 import net.zebatek.simple_woodcutter.registry.ModMenuTypes;
 
 import java.util.ArrayList;
@@ -32,7 +35,7 @@ public class WoodcutterMenu extends AbstractContainerMenu {
     private final ResultContainer resultContainer = new ResultContainer();
     private final DataSlot selectedRecipeIndex = DataSlot.standalone();
     private final Level level;
-    private List<RecipeHolder<WoodcutterRecipe>> recipes = new ArrayList<>();
+    private List<WoodcutterRecipeView> recipes = new ArrayList<>();
     private ItemStack inputStack = ItemStack.EMPTY;
     long lastSoundTime;
 
@@ -56,7 +59,7 @@ public class WoodcutterMenu extends AbstractContainerMenu {
 
             @Override
             public void onTake(Player player, ItemStack stack) {
-                stack.onCraftedBy(player.level(), player, stack.getCount());
+                stack.onCraftedBy(player, stack.getCount());
                 ItemStack inputStack = WoodcutterMenu.this.container.removeItem(0, 1);
 
                 if (!inputStack.isEmpty()) {
@@ -155,12 +158,25 @@ public class WoodcutterMenu extends AbstractContainerMenu {
     }
 
     private void setupRecipeList(Container container, ItemStack stack) {
-        this.recipes.clear();
         this.selectedRecipeIndex.set(-1);
         this.resultContainer.setItem(1, ItemStack.EMPTY);
         if (!stack.isEmpty()) {
-            SingleRecipeInput recipeInput = new SingleRecipeInput(stack);
-            this.recipes = this.level.getRecipeManager().getRecipesFor(ModRecipes.getTYPE(), recipeInput, this.level);
+            if (this.level.isClientSide()) {
+                this.recipes = ClientWoodcutterRecipes.get().stream()
+                        .filter(view -> view.ingredient().test(stack))
+                        .toList();
+            } else {
+                RecipeManager recipeManager = ((ServerLevel) this.level).getServer().getRecipeManager();
+                this.recipes = recipeManager.getRecipes().stream()
+                        .map(RecipeHolder::value)
+                        .filter(recipe -> recipe.getType() == ModRecipes.getTYPE())
+                        .map(recipe -> (WoodcutterRecipe) recipe)
+                        .filter(recipe -> recipe.getInputIngredient().test(stack))
+                        .map(WoodcutterRecipeView::from)
+                        .toList();
+            }
+        } else {
+            this.recipes = List.of();
         }
     }
 
@@ -176,9 +192,8 @@ public class WoodcutterMenu extends AbstractContainerMenu {
 
     private void setupResultSlot() {
         if (!this.recipes.isEmpty() && this.selectedRecipeIndex.get() != -1) {
-            WoodcutterRecipe recipe = this.recipes.get(this.selectedRecipeIndex.get()).value();
-            SingleRecipeInput recipeInput = new SingleRecipeInput(this.container.getItem(0));
-            this.resultContainer.setItem(1, recipe.assemble(recipeInput, this.level.registryAccess()));
+            WoodcutterRecipeView recipe = this.recipes.get(this.selectedRecipeIndex.get());
+            this.resultContainer.setItem(1, recipe.result().copy());
         } else {
             this.resultContainer.setItem(1, ItemStack.EMPTY);
         }
@@ -197,7 +212,7 @@ public class WoodcutterMenu extends AbstractContainerMenu {
     }
 
     public int getSelectedRecipeIndex() { return this.selectedRecipeIndex.get(); }
-    public List<RecipeHolder<WoodcutterRecipe>> getRecipes() { return this.recipes; }
+    public List<WoodcutterRecipeView> getRecipes() { return this.recipes; }
     public int getNumRecipes() { return this.recipes.size(); }
     public boolean hasInputItem() { return !this.container.getItem(0).isEmpty() && !this.recipes.isEmpty(); }
 }

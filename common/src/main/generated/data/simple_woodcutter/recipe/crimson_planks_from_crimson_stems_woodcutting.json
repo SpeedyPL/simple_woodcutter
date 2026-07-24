@@ -1,8 +1,6 @@
 {
   "type": "simple_woodcutter:woodcutting",
-  "ingredient": {
-    "tag": "minecraft:crimson_stems"
-  },
+  "ingredient": "#minecraft:crimson_stems",
   "result": {
     "count": 4,
     "id": "minecraft:crimson_planks"

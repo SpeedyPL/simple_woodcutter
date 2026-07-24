@@ -1,8 +1,6 @@
 {
   "type": "simple_woodcutter:woodcutting",
-  "ingredient": {
-    "item": "minecraft:oak_planks"
-  },
+  "ingredient": "minecraft:oak_planks",
   "result": {
     "count": 27,
     "id": "minecraft:oak_button"

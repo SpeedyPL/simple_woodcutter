@@ -1,10 +1,7 @@
 {
   "type": "simple_woodcutter:woodcutting",
-  "ingredient": {
-    "tag": "minecraft:planks"
-  },
+  "ingredient": "#minecraft:planks",
   "result": {
-    "count": 1,
     "id": "minecraft:ladder"
   }
 }

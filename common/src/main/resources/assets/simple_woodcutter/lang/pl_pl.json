@@ -1,4 +1,5 @@
 {
   "container.simple_woodcutter.woodcutter": "Obróbka drewna",
-  "block.simple_woodcutter.woodcutter": "Piła tarczowa stołowa"
+  "block.simple_woodcutter.woodcutter": "Piła tarczowa",
+  "item.simple_woodcutter.woodcutter": "Piła tarczowa"
 }

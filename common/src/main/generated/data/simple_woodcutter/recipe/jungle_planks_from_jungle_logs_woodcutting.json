@@ -1,8 +1,6 @@
 {
   "type": "simple_woodcutter:woodcutting",
-  "ingredient": {
-    "tag": "minecraft:jungle_logs"
-  },
+  "ingredient": "#minecraft:jungle_logs",
   "result": {
     "count": 4,
     "id": "minecraft:jungle_planks"

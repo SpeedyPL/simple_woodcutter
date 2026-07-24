@@ -65,5 +65,5 @@ repositories {
 
 dependencies {
     compileOnly("mezz.jei:jei-${jei_mc}-neoforge-api:${jei_version}")
-    runtimeOnly("mezz.jei:jei-${jei_mc}-neoforge:${jei_version}")
+    //runtimeOnly("mezz.jei:jei-${jei_mc}-neoforge:${jei_version}")
 }

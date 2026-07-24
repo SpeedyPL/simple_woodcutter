@@ -1,8 +1,6 @@
 {
   "type": "simple_woodcutter:woodcutting",
-  "ingredient": {
-    "item": "minecraft:ladder"
-  },
+  "ingredient": "minecraft:ladder",
   "result": {
     "count": 6,
     "id": "minecraft:stick"

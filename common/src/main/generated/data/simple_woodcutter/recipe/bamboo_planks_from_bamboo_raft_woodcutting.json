@@ -1,8 +1,6 @@
 {
   "type": "simple_woodcutter:woodcutting",
-  "ingredient": {
-    "item": "minecraft:bamboo_raft"
-  },
+  "ingredient": "minecraft:bamboo_raft",
   "result": {
     "count": 5,
     "id": "minecraft:bamboo_planks"

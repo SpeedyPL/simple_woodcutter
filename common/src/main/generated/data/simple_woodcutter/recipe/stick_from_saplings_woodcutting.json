@@ -1,8 +1,6 @@
 {
   "type": "simple_woodcutter:woodcutting",
-  "ingredient": {
-    "tag": "minecraft:saplings"
-  },
+  "ingredient": "#minecraft:saplings",
   "result": {
     "count": 2,
     "id": "minecraft:stick"

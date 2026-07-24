@@ -1,4 +1,5 @@
 {
   "container.simple_woodcutter.woodcutter": "Woodcutting",
-  "block.simple_woodcutter.woodcutter": "Woodcutter"
+  "block.simple_woodcutter.woodcutter": "Woodcutter",
+  "item.simple_woodcutter.woodcutter": "Woodcutter"
 }

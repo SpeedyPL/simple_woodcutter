@@ -1,10 +1,7 @@
 {
   "type": "simple_woodcutter:woodcutting",
-  "ingredient": {
-    "item": "minecraft:acacia_stairs"
-  },
+  "ingredient": "minecraft:acacia_stairs",
   "result": {
-    "count": 1,
     "id": "minecraft:acacia_slab"
   }
 }

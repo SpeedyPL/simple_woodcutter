@@ -1,8 +1,6 @@
 {
   "type": "simple_woodcutter:woodcutting",
-  "ingredient": {
-    "tag": "minecraft:oak_logs"
-  },
+  "ingredient": "#minecraft:oak_logs",
   "result": {
     "count": 4,
     "id": "minecraft:oak_planks"

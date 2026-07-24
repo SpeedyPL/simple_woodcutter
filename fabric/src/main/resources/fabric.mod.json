@@ -25,13 +25,13 @@
       "net.zebatek.simple_woodcutter.fabric.datagen.DataGen"
     ],
     "jei_mod_plugin": [
-      "net.zebatek.simple_woodcutter.compat.JeiWoodcuttingPlugin"
+      "net.zebatek.simple_woodcutter.fabric.compat.JeiWoodcuttingPlugin"
     ]
   },
   "depends": {
     "fabricloader": ">=${fabric_loader_version}",
     "fabric-api": "*",
-    "minecraft": ">=1.21 <=1.21.1",
+    "minecraft": ">=1.21",
     "java": ">=${java_version}"
   }
 }

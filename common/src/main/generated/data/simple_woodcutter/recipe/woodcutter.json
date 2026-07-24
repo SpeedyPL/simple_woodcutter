@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "I": {
-      "item": "minecraft:iron_ingot"
-    },
-    "P": {
-      "tag": "minecraft:planks"
-    }
+    "I": "minecraft:iron_ingot",
+    "P": "#minecraft:planks"
   },
   "pattern": [
     " I ",
@@ -15,7 +11,6 @@
     "I I"
   ],
   "result": {
-    "count": 1,
     "id": "simple_woodcutter:woodcutter"
   }
 }

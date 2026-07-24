@@ -1,10 +1,7 @@
 {
   "type": "simple_woodcutter:woodcutting",
-  "ingredient": {
-    "item": "minecraft:acacia_planks"
-  },
+  "ingredient": "minecraft:acacia_planks",
   "result": {
-    "count": 1,
     "id": "minecraft:acacia_door"
   }
 }

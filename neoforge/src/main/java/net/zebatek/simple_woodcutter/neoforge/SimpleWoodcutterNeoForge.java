@@ -1,6 +1,7 @@
 package net.zebatek.simple_woodcutter.neoforge;
 
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
@@ -11,15 +12,24 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent.PlayerLoggedInEvent;
+import net.neoforged.neoforge.network.PacketDistributor;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.handling.IPayloadHandler;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.zebatek.simple_woodcutter.SimpleWoodcutter;
 import net.zebatek.simple_woodcutter.block.ModBlocks;
 import net.zebatek.simple_woodcutter.menu.WoodcutterMenu;
 import net.zebatek.simple_woodcutter.menu.WoodcutterScreen;
+import net.zebatek.simple_woodcutter.network.ClientWoodcutterRecipes;
+import net.zebatek.simple_woodcutter.network.WoodcutterRecipeSyncPayload;
 import net.zebatek.simple_woodcutter.recipe.WoodcutterRecipe;
+import net.zebatek.simple_woodcutter.recipe.WoodcutterRecipeCollector;
 import net.zebatek.simple_woodcutter.registry.ModMenuTypes;
 
 @Mod(SimpleWoodcutter.MOD_ID)
@@ -39,10 +49,10 @@ public final class SimpleWoodcutterNeoForge {
             () -> IMenuTypeExtension.create((id, inv, data) -> new WoodcutterMenu(id, inv))
     );
 
-    public static final DeferredHolder<RecipeSerializer<?> ,RecipeSerializer<WoodcutterRecipe>> WOODCUTTER_SERIALIZER = SERIALIZERS.register(
-            "woodcutting", WoodcutterRecipe.Serializer::new);
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<WoodcutterRecipe>> WOODCUTTER_SERIALIZER = SERIALIZERS.register(
+            "woodcutting", () -> new RecipeSerializer<>(WoodcutterRecipe.CODEC, WoodcutterRecipe.STREAM_CODEC));
 
-    public static final DeferredHolder<RecipeType<?> ,RecipeType<WoodcutterRecipe>> WOODCUTTER_TYPE = RECIPE_TYPES.register(
+    public static final DeferredHolder<RecipeType<?>, RecipeType<WoodcutterRecipe>> WOODCUTTER_TYPE = RECIPE_TYPES.register(
             "woodcutting", () -> new RecipeType<WoodcutterRecipe>() {
                 @Override
                 public String toString() { return "woodcutting"; }
@@ -58,6 +68,8 @@ public final class SimpleWoodcutterNeoForge {
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);
         eventBus.addListener(this::addCreative);
+        eventBus.addListener(this::registerPayloads);
+        NeoForge.EVENT_BUS.addListener(this::onPlayerLoggedIn);
 
         SimpleWoodcutter.init();
     }
@@ -76,6 +88,23 @@ public final class SimpleWoodcutterNeoForge {
     private void addCreative(BuildCreativeModeTabContentsEvent event){
         if(event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS){
             event.accept(WOODCUTTER_ITEM.get());
+        }
+    }
+
+    private void registerPayloads(final RegisterPayloadHandlersEvent event) {
+        final PayloadRegistrar registrar = event.registrar(SimpleWoodcutter.MOD_ID);
+
+        registrar.playToClient(
+                WoodcutterRecipeSyncPayload.TYPE,
+                WoodcutterRecipeSyncPayload.STREAM_CODEC,
+                (IPayloadHandler<WoodcutterRecipeSyncPayload>) (payload, context) ->
+                        context.enqueueWork(() -> ClientWoodcutterRecipes.set(payload.recipes()))
+        );
+    }
+
+    private void onPlayerLoggedIn(final PlayerLoggedInEvent event) {
+        if (event.getEntity() instanceof ServerPlayer serverPlayer) {
+            PacketDistributor.sendToPlayer(serverPlayer, new WoodcutterRecipeSyncPayload(WoodcutterRecipeCollector.collect(serverPlayer.level().getServer())));
         }
     }
 }

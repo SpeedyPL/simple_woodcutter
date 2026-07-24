@@ -1,8 +1,6 @@
 {
   "type": "simple_woodcutter:woodcutting",
-  "ingredient": {
-    "item": "minecraft:birch_slab"
-  },
+  "ingredient": "minecraft:birch_slab",
   "result": {
     "count": 13,
     "id": "minecraft:birch_button"

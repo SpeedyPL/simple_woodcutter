@@ -1,8 +1,6 @@
 {
   "type": "simple_woodcutter:woodcutting",
-  "ingredient": {
-    "tag": "minecraft:signs"
-  },
+  "ingredient": "#minecraft:signs",
   "result": {
     "count": 4,
     "id": "minecraft:stick"
